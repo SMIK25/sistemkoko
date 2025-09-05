@@ -679,10 +679,11 @@
 
                     <!-- Filter Section -->
                     <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
-                        <div class="flex flex-wrap items-center gap-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Penapis Rekod Keahlian</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Jenis</label>
-                                <select id="filterCoCurricularType" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Jenis</label>
+                                <select id="filterCoCurricularType" onchange="updateUnitFilter(); filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
                                     <option value="">Semua Jenis</option>
                                     <option value="kelab-persatuan">Kelab dan Persatuan</option>
                                     <option value="sukan-permainan">Sukan dan Permainan</option>
@@ -690,8 +691,31 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Jantina</label>
-                                <select id="filterGender" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Unit</label>
+                                <select id="filterUnit" onchange="filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                    <option value="">Semua Unit</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tingkatan</label>
+                                <select id="filterForm" onchange="updateClassFilter(); filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                    <option value="">Semua Tingkatan</option>
+                                    <option value="1">Tingkatan 1</option>
+                                    <option value="2">Tingkatan 2</option>
+                                    <option value="3">Tingkatan 3</option>
+                                    <option value="4">Tingkatan 4</option>
+                                    <option value="5">Tingkatan 5</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
+                                <select id="filterClass" onchange="filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                    <option value="">Semua Kelas</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Jantina</label>
+                                <select id="filterGender" onchange="filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
                                     <option value="">Semua Jantina</option>
                                     <option value="lelaki">Lelaki</option>
                                     <option value="perempuan">Perempuan</option>
@@ -699,8 +723,16 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Cari Ahli</label>
-                                <input type="text" id="searchMember" placeholder="Nama atau No. K/P" onkeyup="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                <input type="text" id="searchMember" placeholder="Nama atau No. K/P" onkeyup="filterMembershipRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
                             </div>
+                        </div>
+                        <div class="mt-4 flex justify-end">
+                            <button onclick="clearAllFilters()" class="text-cyan-600 hover:text-cyan-800 text-sm font-medium flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                <span>Kosongkan Semua Penapis</span>
+                            </button>
                         </div>
                     </div>
 
@@ -1479,12 +1511,15 @@
 
             // Reset filters to show all saved records
             filteredMembershipRecords = [...savedMembershipRecords];
+            
+            // Clear all filters when opening
+            clearAllFilters();
 
             if (savedMembershipRecords.length === 0) {
                 membersList.innerHTML = `
                     <div class="text-center py-12 text-gray-500">
                         <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                         <p class="text-lg font-medium">Tiada ahli berdaftar lagi</p>
                         <p class="text-sm">Sila daftar ahli baru menggunakan "Daftar Keahlian" untuk melihat rekod di sini</p>
@@ -1502,6 +1537,10 @@
                 return;
             }
 
+            // Initialize filter options based on available data
+            updateUnitFilter();
+            updateClassFilter();
+            
             updateMembershipStats();
             renderMembersList();
         }
@@ -1622,20 +1661,95 @@
             membersList.innerHTML = html;
         }
 
+        function updateUnitFilter() {
+            const typeFilter = document.getElementById('filterCoCurricularType').value;
+            const unitSelect = document.getElementById('filterUnit');
+            
+            // Clear existing options
+            unitSelect.innerHTML = '<option value="">Semua Unit</option>';
+            
+            if (!typeFilter) {
+                return;
+            }
+            
+            // Get unique units from saved records for the selected type
+            const unitsForType = [...new Set(
+                savedMembershipRecords
+                    .filter(member => member.coCurricularType === typeFilter)
+                    .map(member => member.unitDisplayName)
+            )].sort();
+            
+            unitsForType.forEach(unit => {
+                const option = document.createElement('option');
+                option.value = unit;
+                option.textContent = unit;
+                unitSelect.appendChild(option);
+            });
+        }
+
+        function updateClassFilter() {
+            const formFilter = document.getElementById('filterForm').value;
+            const classSelect = document.getElementById('filterClass');
+            
+            // Clear existing options
+            classSelect.innerHTML = '<option value="">Semua Kelas</option>';
+            
+            if (!formFilter) {
+                return;
+            }
+            
+            // Get unique classes from saved records for the selected form
+            const classesForForm = [...new Set(
+                savedMembershipRecords
+                    .filter(member => member.class.startsWith(formFilter + ' '))
+                    .map(member => member.class)
+            )].sort();
+            
+            classesForForm.forEach(className => {
+                const option = document.createElement('option');
+                option.value = className;
+                option.textContent = className;
+                classSelect.appendChild(option);
+            });
+        }
+
+        function clearAllFilters() {
+            document.getElementById('filterCoCurricularType').value = '';
+            document.getElementById('filterUnit').value = '';
+            document.getElementById('filterForm').value = '';
+            document.getElementById('filterClass').value = '';
+            document.getElementById('filterGender').value = '';
+            document.getElementById('searchMember').value = '';
+            
+            // Reset dependent filters
+            updateUnitFilter();
+            updateClassFilter();
+            
+            // Apply filters
+            filterMembershipRecords();
+        }
+
         function filterMembershipRecords() {
             const typeFilter = document.getElementById('filterCoCurricularType').value;
+            const unitFilter = document.getElementById('filterUnit').value;
+            const formFilter = document.getElementById('filterForm').value;
+            const classFilter = document.getElementById('filterClass').value;
             const genderFilter = document.getElementById('filterGender').value;
             const searchTerm = document.getElementById('searchMember').value.toLowerCase();
 
             filteredMembershipRecords = savedMembershipRecords.filter(member => {
                 const matchesType = !typeFilter || member.coCurricularType === typeFilter;
+                const matchesUnit = !unitFilter || member.unitDisplayName === unitFilter;
+                const matchesForm = !formFilter || member.class.startsWith(formFilter + ' ');
+                const matchesClass = !classFilter || member.class === classFilter;
                 const matchesGender = !genderFilter || member.gender === genderFilter;
                 const matchesSearch = !searchTerm || 
                     member.name.toLowerCase().includes(searchTerm) ||
                     member.id.toLowerCase().includes(searchTerm) ||
-                    member.class.toLowerCase().includes(searchTerm);
+                    member.class.toLowerCase().includes(searchTerm) ||
+                    member.unitDisplayName.toLowerCase().includes(searchTerm);
                 
-                return matchesType && matchesGender && matchesSearch;
+                return matchesType && matchesUnit && matchesForm && matchesClass && matchesGender && matchesSearch;
             });
 
             updateMembershipStats();
@@ -1748,5 +1862,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3774343b41fe1',t:'MTc1NzA1MTYwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3af2fc7851fe1',t:'MTc1NzA1Mzg5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
