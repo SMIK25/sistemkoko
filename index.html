@@ -814,91 +814,92 @@
 
                 <div class="form-container mx-8">
                     <form onsubmit="submitMemberForm(event)">
-                        <div class="grid grid-cols-2 gap-6 mb-6">
-                            <div class="form-group">
-                                <label class="form-label">Nama Ahli</label>
-                                <input type="text" required class="form-input" placeholder="Masukkan nama penuh ahli">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">No. Kad Pengenalan</label>
-                                <input type="text" required class="form-input" placeholder="000000-00-0000">
-                            </div>
+                        <!-- Timestamp (Auto-generated) -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">Timestamp</label>
+                            <input type="text" id="timestamp" class="form-input bg-gray-100" readonly>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-6 mb-6">
+                        <!-- Jenis Kokurikulum -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">Jenis Kokurikulum</label>
+                            <select required class="form-input" id="jenisKokurikulum" onchange="updateUnitOptions()">
+                                <option value="">Pilih Jenis Kokurikulum</option>
+                                <option value="Kelab dan Persatuan">Kelab dan Persatuan</option>
+                                <option value="Sukan dan Permainan">Sukan dan Permainan</option>
+                                <option value="Badan Beruniform">Badan Beruniform</option>
+                            </select>
+                        </div>
+
+                        <!-- Unit (Dynamic based on Jenis Kokurikulum) -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">Unit</label>
+                            <select required class="form-input" id="unit">
+                                <option value="">Pilih Jenis Kokurikulum dahulu</option>
+                            </select>
+                        </div>
+
+                        <!-- Tingkatan and Kelas in a grid -->
+                        <div class="grid grid-cols-2 gap-6 mb-6">
+                            <!-- Tingkatan -->
+                            <div class="form-group">
+                                <label class="form-label">Tingkatan</label>
+                                <select required class="form-input" id="tingkatan" onchange="updateKelasOptions()">
+                                    <option value="">Pilih Tingkatan</option>
+                                    <option value="1">Tingkatan 1</option>
+                                    <option value="2">Tingkatan 2</option>
+                                    <option value="3">Tingkatan 3</option>
+                                    <option value="4">Tingkatan 4</option>
+                                    <option value="5">Tingkatan 5</option>
+                                </select>
+                            </div>
+
+                            <!-- Kelas -->
                             <div class="form-group">
                                 <label class="form-label">Kelas</label>
-                                <select required class="form-input">
-                                    <option value="">Pilih Kelas</option>
-                                    <option value="1A">1A</option>
-                                    <option value="1B">1B</option>
-                                    <option value="1C">1C</option>
-                                    <option value="2A">2A</option>
-                                    <option value="2B">2B</option>
-                                    <option value="2C">2C</option>
-                                    <option value="3A">3A</option>
-                                    <option value="3B">3B</option>
-                                    <option value="3C">3C</option>
-                                    <option value="4A">4A</option>
-                                    <option value="4B">4B</option>
-                                    <option value="4C">4C</option>
-                                    <option value="5A">5A</option>
-                                    <option value="5B">5B</option>
-                                    <option value="5C">5C</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Unit Kokurikulum</label>
-                                <select required class="form-input">
-                                    <option value="">Pilih Unit</option>
-                                    <option value="Pengakap">Pengakap</option>
-                                    <option value="Puteri Islam">Puteri Islam</option>
-                                    <option value="Kadet Polis">Kadet Polis</option>
-                                    <option value="Kadet Bomba">Kadet Bomba</option>
-                                    <option value="Bulan Sabit Merah">Bulan Sabit Merah</option>
-                                    <option value="Kelab Sains">Kelab Sains</option>
-                                    <option value="Kelab Matematik">Kelab Matematik</option>
-                                    <option value="Kelab Bahasa Inggeris">Kelab Bahasa Inggeris</option>
-                                    <option value="Kelab Komputer">Kelab Komputer</option>
-                                    <option value="Persatuan Sejarah">Persatuan Sejarah</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Jawatan</label>
-                                <select required class="form-input">
-                                    <option value="">Pilih Jawatan</option>
-                                    <option value="Ahli">Ahli</option>
-                                    <option value="Setiausaha">Setiausaha</option>
-                                    <option value="Bendahari">Bendahari</option>
-                                    <option value="Naib Presiden">Naib Presiden</option>
-                                    <option value="Presiden">Presiden</option>
+                                <select required class="form-input" id="kelas">
+                                    <option value="">Pilih Tingkatan dahulu</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-6 mb-6">
-                            <div class="form-group">
-                                <label class="form-label">Tarikh Daftar</label>
-                                <input type="date" required class="form-input">
-                            </div>
+                        <!-- Nama Penuh -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">Nama Penuh</label>
+                            <input type="text" required class="form-input" placeholder="Masukkan nama penuh pelajar">
+                        </div>
 
-                            <div class="form-group">
-                                <label class="form-label">Status</label>
-                                <select required class="form-input">
-                                    <option value="">Pilih Status</option>
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Tidak Aktif">Tidak Aktif</option>
-                                    <option value="Berhenti">Berhenti</option>
-                                </select>
+                        <!-- Jantina -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">Jantina</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="jantina" value="Lelaki" required>
+                                    <svg class="attendance-icon text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                    </svg>
+                                    <span class="font-medium text-blue-700">Lelaki</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jantina" value="Perempuan" required>
+                                    <svg class="attendance-icon text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                    </svg>
+                                    <span class="font-medium text-pink-700">Perempuan</span>
+                                </label>
                             </div>
                         </div>
 
+                        <!-- No Kad Pengenalan -->
+                        <div class="form-group mb-6">
+                            <label class="form-label">No. Kad Pengenalan</label>
+                            <input type="text" required class="form-input" placeholder="000000-00-0000" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}">
+                        </div>
+
+                        <!-- No Telefon Ibu/Bapa -->
                         <div class="form-group mb-8">
-                            <label class="form-label">Catatan (Opsional)</label>
-                            <textarea class="form-input" rows="4" placeholder="Masukkan catatan tambahan jika perlu..."></textarea>
+                            <label class="form-label">No. Telefon Ibu/Bapa</label>
+                            <input type="tel" required class="form-input" placeholder="01X-XXXXXXX" pattern="[0-9]{3}-[0-9]{7,8}">
                         </div>
 
                         <div class="flex space-x-4">
@@ -1016,20 +1017,91 @@
                                 <input type="text" class="search-input" placeholder="Cari ahli..." oninput="filterRecords(this.value)">
                             </div>
                             
-                            <button onclick="showScreen('memberForm')" class="btn-primary">
-                                + Tambah Ahli Baru
-                            </button>
+                            <div class="flex space-x-3">
+                                <button onclick="resetAllFilters()" class="btn-secondary">
+                                    Reset Penapis
+                                </button>
+                                <button onclick="showScreen('memberForm')" class="btn-primary">
+                                    + Tambah Ahli Baru
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Filter Buttons -->
+                        <!-- Advanced Filters -->
+                        <div class="grid grid-cols-5 gap-4 mb-4">
+                            <!-- Jenis Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Jenis</label>
+                                <select class="form-input text-sm" onchange="filterByCategory('jenis', this.value)">
+                                    <option value="">Semua Jenis</option>
+                                    <option value="Kelab dan Persatuan">Kelab dan Persatuan</option>
+                                    <option value="Sukan dan Permainan">Sukan dan Permainan</option>
+                                    <option value="Badan Beruniform">Badan Beruniform</option>
+                                </select>
+                            </div>
+
+                            <!-- Unit Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Unit</label>
+                                <select class="form-input text-sm" onchange="filterByCategory('unit', this.value)">
+                                    <option value="">Semua Unit</option>
+                                    <option value="Kadet Remaja Sekolah">Kadet Remaja Sekolah</option>
+                                    <option value="Pergerakan Puteri Islam Malaysia">Puteri Islam</option>
+                                    <option value="Bulan Sabit Merah Malaysia (L)">Bulan Sabit Merah (L)</option>
+                                    <option value="Bulan Sabit Merah Malaysia (P)">Bulan Sabit Merah (P)</option>
+                                    <option value="Bahasa Melayu">Kelab Bahasa Melayu</option>
+                                    <option value="STEM">Kelab STEM</option>
+                                    <option value="Bola Sepak">Bola Sepak</option>
+                                    <option value="Bola Jaring">Bola Jaring</option>
+                                </select>
+                            </div>
+
+                            <!-- Tingkatan Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Tingkatan</label>
+                                <select class="form-input text-sm" onchange="filterByCategory('tingkatan', this.value)">
+                                    <option value="">Semua Tingkatan</option>
+                                    <option value="1">Tingkatan 1</option>
+                                    <option value="2">Tingkatan 2</option>
+                                    <option value="3">Tingkatan 3</option>
+                                    <option value="4">Tingkatan 4</option>
+                                    <option value="5">Tingkatan 5</option>
+                                </select>
+                            </div>
+
+                            <!-- Kelas Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Kelas</label>
+                                <select class="form-input text-sm" onchange="filterByCategory('kelas', this.value)">
+                                    <option value="">Semua Kelas</option>
+                                    <option value="Hikmah">Hikmah</option>
+                                    <option value="Fatonah">Fatonah</option>
+                                    <option value="Amanah">Amanah</option>
+                                    <option value="Hasanah">Hasanah</option>
+                                    <option value="Taqwa">Taqwa</option>
+                                    <option value="Syariah">Syariah</option>
+                                </select>
+                            </div>
+
+                            <!-- Jantina Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Jantina</label>
+                                <select class="form-input text-sm" onchange="filterByCategory('jantina', this.value)">
+                                    <option value="">Semua Jantina</option>
+                                    <option value="Lelaki">Lelaki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Quick Filter Stats -->
                         <div class="flex space-x-3">
-                            <button class="btn-secondary bg-blue-100 text-blue-700 border-blue-200">Semua (248)</button>
-                            <button class="btn-secondary">Aktif (215)</button>
-                            <button class="btn-secondary">Tidak Aktif (33)</button>
-                            <button class="btn-secondary">Pengakap (45)</button>
-                            <button class="btn-secondary">Puteri Islam (38)</button>
-                            <button class="btn-secondary">Kadet Polis (32)</button>
-                            <button class="btn-secondary">Lain-lain (133)</button>
+                            <button class="btn-secondary bg-blue-100 text-blue-700 border-blue-200" id="totalCount">Semua (248)</button>
+                            <button class="btn-secondary" onclick="filterByCategory('jenis', 'Badan Beruniform')">Badan Beruniform (89)</button>
+                            <button class="btn-secondary" onclick="filterByCategory('jenis', 'Kelab dan Persatuan')">Kelab & Persatuan (95)</button>
+                            <button class="btn-secondary" onclick="filterByCategory('jenis', 'Sukan dan Permainan')">Sukan & Permainan (64)</button>
+                            <button class="btn-secondary" onclick="filterByCategory('jantina', 'Lelaki')">Lelaki (128)</button>
+                            <button class="btn-secondary" onclick="filterByCategory('jantina', 'Perempuan')">Perempuan (120)</button>
                         </div>
                     </div>
 
@@ -1038,154 +1110,270 @@
                         <div class="table-header">
                             <div class="table-header-row">
                                 <div>Nama Ahli</div>
-                                <div>Unit</div>
+                                <div>Jenis/Unit</div>
+                                <div>Tingkatan</div>
                                 <div>Kelas</div>
-                                <div>Jawatan</div>
+                                <div>Jantina</div>
                                 <div>Tarikh Daftar</div>
-                                <div>Status</div>
                                 <div>Tindakan</div>
                             </div>
                         </div>
                         
                         <div id="recordsTable">
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Badan Beruniform" data-unit="Kadet Remaja Sekolah" data-tingkatan="4" data-kelas="Amanah" data-jantina="Lelaki">
                                 <div>
                                     <div class="font-semibold text-gray-800">Ahmad Faiz bin Abdullah</div>
-                                    <div class="text-sm text-gray-500">001122-03-4567</div>
+                                    <div class="text-sm text-gray-500">041205-03-4567</div>
                                 </div>
-                                <div class="font-medium">Pengakap</div>
-                                <div>4A</div>
-                                <div>Ahli</div>
-                                <div>15/01/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full inline-block mb-1">Badan Beruniform</div>
+                                    <div class="font-medium text-sm">Kadet Remaja Sekolah</div>
                                 </div>
+                                <div class="font-medium">4</div>
+                                <div class="font-medium">Amanah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Lelaki
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">15/01/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Badan Beruniform" data-unit="Pergerakan Puteri Islam Malaysia" data-tingkatan="5" data-kelas="Taqwa" data-jantina="Perempuan">
                                 <div>
                                     <div class="font-semibold text-gray-800">Siti Nurhaliza binti Hassan</div>
-                                    <div class="text-sm text-gray-500">001122-03-4568</div>
+                                    <div class="text-sm text-gray-500">030405-03-4568</div>
                                 </div>
-                                <div class="font-medium">Puteri Islam</div>
-                                <div>5B</div>
-                                <div>Presiden</div>
-                                <div>10/01/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full inline-block mb-1">Badan Beruniform</div>
+                                    <div class="font-medium text-sm">Puteri Islam</div>
                                 </div>
+                                <div class="font-medium">5</div>
+                                <div class="font-medium">Taqwa</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Perempuan
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">10/01/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Badan Beruniform" data-unit="Bulan Sabit Merah Malaysia (L)" data-tingkatan="3" data-kelas="Hikmah" data-jantina="Lelaki">
                                 <div>
                                     <div class="font-semibold text-gray-800">Muhammad Aidil bin Zainudin</div>
-                                    <div class="text-sm text-gray-500">001122-03-4569</div>
+                                    <div class="text-sm text-gray-500">050606-03-4569</div>
                                 </div>
-                                <div class="font-medium">Kadet Polis</div>
-                                <div>3A</div>
-                                <div>Setiausaha</div>
-                                <div>20/01/2024</div>
                                 <div>
-                                    <span class="status-badge status-inactive">Tidak Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full inline-block mb-1">Badan Beruniform</div>
+                                    <div class="font-medium text-sm">Bulan Sabit Merah (L)</div>
                                 </div>
+                                <div class="font-medium">3</div>
+                                <div class="font-medium">Hikmah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Lelaki
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">20/01/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Badan Beruniform" data-unit="Bulan Sabit Merah Malaysia (P)" data-tingkatan="2" data-kelas="Fatonah" data-jantina="Perempuan">
                                 <div>
                                     <div class="font-semibold text-gray-800">Nurul Aina binti Mohd Yusof</div>
-                                    <div class="text-sm text-gray-500">001122-03-4570</div>
+                                    <div class="text-sm text-gray-500">060707-03-4570</div>
                                 </div>
-                                <div class="font-medium">Bulan Sabit Merah</div>
-                                <div>2B</div>
-                                <div>Bendahari</div>
-                                <div>25/01/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full inline-block mb-1">Badan Beruniform</div>
+                                    <div class="font-medium text-sm">Bulan Sabit Merah (P)</div>
                                 </div>
+                                <div class="font-medium">2</div>
+                                <div class="font-medium">Fatonah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Perempuan
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">25/01/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Kelab dan Persatuan" data-unit="STEM" data-tingkatan="4" data-kelas="Syariah" data-jantina="Lelaki">
                                 <div>
                                     <div class="font-semibold text-gray-800">Khairul Anwar bin Ibrahim</div>
-                                    <div class="text-sm text-gray-500">001122-03-4571</div>
+                                    <div class="text-sm text-gray-500">040808-03-4571</div>
                                 </div>
-                                <div class="font-medium">Kelab Sains</div>
-                                <div>4B</div>
-                                <div>Naib Presiden</div>
-                                <div>30/01/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full inline-block mb-1">Kelab & Persatuan</div>
+                                    <div class="font-medium text-sm">Kelab STEM</div>
                                 </div>
+                                <div class="font-medium">4</div>
+                                <div class="font-medium">Syariah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Lelaki
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">30/01/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Kelab dan Persatuan" data-unit="Bahasa Melayu" data-tingkatan="5" data-kelas="Fatonah" data-jantina="Perempuan">
                                 <div>
                                     <div class="font-semibold text-gray-800">Fatimah Az-Zahra binti Ismail</div>
-                                    <div class="text-sm text-gray-500">001122-03-4572</div>
+                                    <div class="text-sm text-gray-500">030909-03-4572</div>
                                 </div>
-                                <div class="font-medium">Kelab Matematik</div>
-                                <div>5A</div>
-                                <div>Ahli</div>
-                                <div>05/02/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full inline-block mb-1">Kelab & Persatuan</div>
+                                    <div class="font-medium text-sm">Kelab Bahasa Melayu</div>
                                 </div>
+                                <div class="font-medium">5</div>
+                                <div class="font-medium">Fatonah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Perempuan
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">05/02/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Sukan dan Permainan" data-unit="Bola Sepak" data-tingkatan="3" data-kelas="Hasanah" data-jantina="Lelaki">
                                 <div>
                                     <div class="font-semibold text-gray-800">Mohd Hafiz bin Razak</div>
-                                    <div class="text-sm text-gray-500">001122-03-4573</div>
+                                    <div class="text-sm text-gray-500">051010-03-4573</div>
                                 </div>
-                                <div class="font-medium">Kadet Bomba</div>
-                                <div>3C</div>
-                                <div>Ahli</div>
-                                <div>12/02/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded-full inline-block mb-1">Sukan & Permainan</div>
+                                    <div class="font-medium text-sm">Bola Sepak</div>
                                 </div>
+                                <div class="font-medium">3</div>
+                                <div class="font-medium">Hasanah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Lelaki
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">12/02/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
                                 </div>
                             </div>
 
-                            <div class="table-row">
+                            <div class="table-row" data-jenis="Sukan dan Permainan" data-unit="Bola Jaring" data-tingkatan="4" data-kelas="Amanah" data-jantina="Perempuan">
                                 <div>
                                     <div class="font-semibold text-gray-800">Aisha Sofea binti Rahman</div>
-                                    <div class="text-sm text-gray-500">001122-03-4574</div>
+                                    <div class="text-sm text-gray-500">041111-03-4574</div>
                                 </div>
-                                <div class="font-medium">Kelab Bahasa Inggeris</div>
-                                <div>4C</div>
-                                <div>Setiausaha</div>
-                                <div>18/02/2024</div>
                                 <div>
-                                    <span class="status-badge status-active">Aktif</span>
+                                    <div class="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded-full inline-block mb-1">Sukan & Permainan</div>
+                                    <div class="font-medium text-sm">Bola Jaring</div>
                                 </div>
+                                <div class="font-medium">4</div>
+                                <div class="font-medium">Amanah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Perempuan
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">18/02/2024</div>
+                                <div>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                    <button class="action-btn btn-delete">Hapus</button>
+                                </div>
+                            </div>
+
+                            <div class="table-row" data-jenis="Kelab dan Persatuan" data-unit="Fotografi" data-tingkatan="1" data-kelas="Hikmah" data-jantina="Lelaki">
+                                <div>
+                                    <div class="font-semibold text-gray-800">Danial Hakimi bin Roslan</div>
+                                    <div class="text-sm text-gray-500">071212-03-4575</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full inline-block mb-1">Kelab & Persatuan</div>
+                                    <div class="font-medium text-sm">Kelab Fotografi</div>
+                                </div>
+                                <div class="font-medium">1</div>
+                                <div class="font-medium">Hikmah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Lelaki
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">22/02/2024</div>
+                                <div>
+                                    <button class="action-btn btn-edit">Edit</button>
+                                    <button class="action-btn btn-delete">Hapus</button>
+                                </div>
+                            </div>
+
+                            <div class="table-row" data-jenis="Sukan dan Permainan" data-unit="Ping Pong Perempuan" data-tingkatan="2" data-kelas="Amanah" data-jantina="Perempuan">
+                                <div>
+                                    <div class="font-semibold text-gray-800">Nur Insyirah binti Ahmad</div>
+                                    <div class="text-sm text-gray-500">060101-03-4576</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs px-2 py-1 bg-orange-100 text-orange-800 rounded-full inline-block mb-1">Sukan & Permainan</div>
+                                    <div class="font-medium text-sm">Ping Pong Perempuan</div>
+                                </div>
+                                <div class="font-medium">2</div>
+                                <div class="font-medium">Amanah</div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                        </svg>
+                                        Perempuan
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">28/02/2024</div>
                                 <div>
                                     <button class="action-btn btn-edit">Edit</button>
                                     <button class="action-btn btn-delete">Hapus</button>
@@ -1196,8 +1384,8 @@
 
                     <!-- Pagination -->
                     <div class="flex items-center justify-between mt-6">
-                        <div class="text-sm text-gray-600">
-                            Menunjukkan 1-8 daripada 248 rekod
+                        <div class="text-sm text-gray-600" id="recordCount">
+                            Menunjukkan 1-11 daripada 248 rekod
                         </div>
                         <div class="flex space-x-2">
                             <button class="btn-secondary">Sebelum</button>
@@ -1205,7 +1393,7 @@
                             <button class="btn-secondary">2</button>
                             <button class="btn-secondary">3</button>
                             <button class="btn-secondary">...</button>
-                            <button class="btn-secondary">31</button>
+                            <button class="btn-secondary">23</button>
                             <button class="btn-secondary">Seterusnya</button>
                         </div>
                     </div>
@@ -1231,6 +1419,105 @@
             event.target.closest('.nav-item')?.classList.add('active');
         }
 
+        function updateUnitOptions() {
+            const jenisKokurikulum = document.getElementById('jenisKokurikulum').value;
+            const unitSelect = document.getElementById('unit');
+            
+            // Clear existing options
+            unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
+            
+            let units = [];
+            
+            if (jenisKokurikulum === 'Kelab dan Persatuan') {
+                units = [
+                    'Bahasa Melayu',
+                    'Bahasa Arab', 
+                    'Bahasa Inggeris',
+                    'Inovasi dan Reka Cipta',
+                    'STEM',
+                    'Kebudayaan',
+                    'Fotografi',
+                    'Seni dan Khat',
+                    'Pencegahan Jenayah',
+                    'Nadi Huffaz/Qurra\'',
+                    'Kerjaya dan Bimbingan Kaunseling',
+                    'Usahawan Muda'
+                ];
+            } else if (jenisKokurikulum === 'Sukan dan Permainan') {
+                units = [
+                    'Bola Sepak',
+                    'Bola Tampar',
+                    'Memanah Lelaki',
+                    'Ping Pong Lelaki',
+                    'Bola Jaring',
+                    'Bola Baling',
+                    'Memanah Perempuan',
+                    'Ping Pong Perempuan'
+                ];
+            } else if (jenisKokurikulum === 'Badan Beruniform') {
+                units = [
+                    'Kadet Remaja Sekolah',
+                    'Kadet Sekolah Pertahanan Awam (L)',
+                    'Bulan Sabit Merah Malaysia (L)',
+                    'Pergerakan Puteri Islam Malaysia',
+                    'Kadet Sekolah Pertahanan Awam (P)',
+                    'Bulan Sabit Merah Malaysia (P)'
+                ];
+            }
+            
+            // Add options to select
+            units.forEach(unit => {
+                const option = document.createElement('option');
+                option.value = unit;
+                option.textContent = unit;
+                unitSelect.appendChild(option);
+            });
+        }
+
+        function updateKelasOptions() {
+            const tingkatan = document.getElementById('tingkatan').value;
+            const kelasSelect = document.getElementById('kelas');
+            
+            // Clear existing options
+            kelasSelect.innerHTML = '<option value="">Pilih Kelas</option>';
+            
+            let kelasOptions = [];
+            
+            if (tingkatan === '1') {
+                kelasOptions = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+            } else if (tingkatan === '2') {
+                kelasOptions = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+            } else if (tingkatan === '3') {
+                kelasOptions = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+            } else if (tingkatan === '4') {
+                kelasOptions = ['Taqwa', 'Fatonah', 'Amanah', 'Syariah'];
+            } else if (tingkatan === '5') {
+                kelasOptions = ['Taqwa', 'Fatonah', 'Amanah', 'Syariah'];
+            }
+            
+            // Add options to select
+            kelasOptions.forEach(kelas => {
+                const option = document.createElement('option');
+                option.value = kelas;
+                option.textContent = kelas;
+                kelasSelect.appendChild(option);
+            });
+        }
+
+        function generateTimestamp() {
+            const now = new Date();
+            const timestamp = now.toLocaleString('ms-MY', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('timestamp').value = timestamp;
+        }
+
         function submitMemberForm(event) {
             event.preventDefault();
             
@@ -1239,6 +1526,9 @@
             
             // Reset form
             event.target.reset();
+            
+            // Generate new timestamp for next entry
+            generateTimestamp();
             
             // Redirect to dashboard
             showScreen('dashboard');
@@ -1270,7 +1560,87 @@
             });
         }
 
-        // Add click handlers for radio options
+        // Global filter state
+        let currentFilters = {
+            jenis: '',
+            unit: '',
+            tingkatan: '',
+            kelas: '',
+            jantina: ''
+        };
+
+        function filterByCategory(category, value) {
+            currentFilters[category] = value;
+            applyAllFilters();
+        }
+
+        function applyAllFilters() {
+            const rows = document.querySelectorAll('#recordsTable .table-row');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                let shouldShow = true;
+                
+                // Check each filter
+                Object.keys(currentFilters).forEach(filterKey => {
+                    if (currentFilters[filterKey] && currentFilters[filterKey] !== '') {
+                        const rowValue = row.getAttribute(`data-${filterKey}`);
+                        if (rowValue !== currentFilters[filterKey]) {
+                            shouldShow = false;
+                        }
+                    }
+                });
+                
+                if (shouldShow) {
+                    row.style.display = 'grid';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Update count display
+            updateRecordCount(visibleCount);
+        }
+
+        function updateRecordCount(count) {
+            const countElement = document.getElementById('recordCount');
+            if (countElement) {
+                const totalRecords = document.querySelectorAll('#recordsTable .table-row').length;
+                countElement.textContent = `Menunjukkan ${count} daripada ${totalRecords} rekod`;
+            }
+            
+            // Update total count button
+            const totalCountBtn = document.getElementById('totalCount');
+            if (totalCountBtn) {
+                totalCountBtn.textContent = `Semua (${count})`;
+            }
+        }
+
+        function resetAllFilters() {
+            currentFilters = {
+                jenis: '',
+                unit: '',
+                tingkatan: '',
+                kelas: '',
+                jantina: ''
+            };
+            
+            // Reset all select elements
+            document.querySelectorAll('select[onchange*="filterByCategory"]').forEach(select => {
+                select.value = '';
+            });
+            
+            // Clear search input
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            
+            applyAllFilters();
+        }
+
+        // Add click handlers for radio options and initialize timestamp
         document.addEventListener('DOMContentLoaded', function() {
             const radioOptions = document.querySelectorAll('.radio-option');
             
@@ -1290,7 +1660,10 @@
                     radio.checked = true;
                 });
             });
+            
+            // Generate initial timestamp
+            generateTimestamp();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a40d3eb1b81fe1',t:'MTc1NzA1Nzc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a4351aa6371fe1',t:'MTc1NzA1OTM3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
