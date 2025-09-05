@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Pengurusan Kokurikulum Sekolah Menengah Ibn Khaldun</title>
+    <title>Sistem Pengurusan Kokurikulum Sekolah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -54,7 +54,7 @@
                 <svg class="w-12 h-12 mr-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
                 </svg>
-                <h1 class="text-4xl font-bold">Sistem Pengurusan Kokurikulum Sekolah Menengah Ibn Khaldun</h1>
+                <h1 class="text-4xl font-bold">Sistem Pengurusan Kokurikulum Sekolah</h1>
             </div>
             <p class="text-xl opacity-90">Dashboard Pengurusan Aktiviti dan Pencapaian Pelajar</p>
         </div>
@@ -177,7 +177,16 @@
                         <p class="text-sm text-gray-600">Attendance Record</p>
                     </div>
                 </div>
-                <p class="text-gray-600 text-sm">Rekod dan analisis kehadiran pelajar</p>
+                <p class="text-gray-600 text-sm mb-4">Rekod dan analisis kehadiran pelajar</p>
+                
+                <!-- View Records Button -->
+                <button onclick="openAttendanceRecords()" class="w-full bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                    <span>Lihat Rekod Kehadiran</span>
+                </button>
             </div>
 
             <!-- Rekod Laporan Mingguan -->
@@ -321,37 +330,84 @@
                         <div class="border-t pt-6">
                             <h4 class="text-lg font-semibold text-gray-800 mb-4">Pendaftaran Kehadiran Pelajar</h4>
                             
-                            <!-- Add Student Form -->
+                            <!-- Student Selection Method -->
                             <div class="bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200">
-                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pelajar</label>
-                                        <input type="text" id="studentName" placeholder="Nama penuh pelajar" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">No. K/P atau No. Pelajar</label>
-                                        <input type="text" id="studentId" placeholder="123456-78-9012" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
-                                        <select id="studentClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                            <option value="">Pilih Kelas</option>
-                                            <option value="1A">Tingkatan 1A</option>
-                                            <option value="1B">Tingkatan 1B</option>
-                                            <option value="2A">Tingkatan 2A</option>
-                                            <option value="2B">Tingkatan 2B</option>
-                                            <option value="3A">Tingkatan 3A</option>
-                                            <option value="3B">Tingkatan 3B</option>
-                                            <option value="4A">Tingkatan 4A</option>
-                                            <option value="4B">Tingkatan 4B</option>
-                                            <option value="5A">Tingkatan 5A</option>
-                                            <option value="5B">Tingkatan 5B</option>
-                                        </select>
-                                    </div>
-                                    <div class="flex items-end">
-                                        <button type="button" onclick="addStudent()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                                            ➕ Tambah Pelajar
+                                <div class="flex items-center justify-between mb-4">
+                                    <h5 class="font-medium text-gray-800">Pilih Kaedah Pendaftaran Pelajar</h5>
+                                    <div class="flex bg-white rounded-lg p-1 border">
+                                        <button type="button" id="selectFromListBtn" onclick="switchToSelectMode()" class="px-4 py-2 text-sm font-medium rounded-md bg-blue-600 text-white">
+                                            📋 Pilih dari Senarai
                                         </button>
+                                        <button type="button" id="manualEntryBtn" onclick="switchToManualMode()" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-800">
+                                            ✏️ Input Manual
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Select from List Mode -->
+                                <div id="selectFromListMode" class="space-y-4">
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                        <div class="flex items-center mb-3">
+                                            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="text-blue-800 font-medium text-sm">Senarai pelajar akan dipaparkan berdasarkan aktiviti yang dipilih</span>
+                                        </div>
+                                        <div id="studentListContainer" class="hidden">
+                                            <h6 class="font-medium text-gray-700 mb-3">Senarai Ahli <span id="selectedActivityName"></span>:</h6>
+                                            <div id="studentCheckboxList" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-60 overflow-y-auto">
+                                                <!-- Student checkboxes will be populated here -->
+                                            </div>
+                                            <div class="mt-4 flex justify-between items-center">
+                                                <button type="button" onclick="selectAllStudents()" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                                    ✅ Pilih Semua
+                                                </button>
+                                                <button type="button" onclick="clearAllStudents()" class="text-red-600 hover:text-red-800 text-sm font-medium">
+                                                    ❌ Kosongkan Pilihan
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div id="noActivitySelected" class="text-center py-4 text-gray-500">
+                                            <svg class="w-12 h-12 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                            <p class="text-sm">Sila pilih aktiviti terlebih dahulu untuk melihat senarai pelajar</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Manual Entry Mode -->
+                                <div id="manualEntryMode" class="hidden">
+                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pelajar</label>
+                                            <input type="text" id="studentName" placeholder="Nama penuh pelajar" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">No. K/P atau No. Pelajar</label>
+                                            <input type="text" id="studentId" placeholder="123456-78-9012" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
+                                            <select id="studentClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                <option value="">Pilih Kelas</option>
+                                                <option value="1A">Tingkatan 1A</option>
+                                                <option value="1B">Tingkatan 1B</option>
+                                                <option value="2A">Tingkatan 2A</option>
+                                                <option value="2B">Tingkatan 2B</option>
+                                                <option value="3A">Tingkatan 3A</option>
+                                                <option value="3B">Tingkatan 3B</option>
+                                                <option value="4A">Tingkatan 4A</option>
+                                                <option value="4B">Tingkatan 4B</option>
+                                                <option value="5A">Tingkatan 5A</option>
+                                                <option value="5B">Tingkatan 5B</option>
+                                            </select>
+                                        </div>
+                                        <div class="flex items-end">
+                                            <button type="button" onclick="addStudentManually()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                                ➕ Tambah Pelajar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -387,9 +443,144 @@
         </div>
     </div>
 
+    <!-- Attendance Records Modal -->
+    <div id="attendanceRecordsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="bg-purple-600 text-white p-6 rounded-t-2xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            <div>
+                                <h2 class="text-2xl font-bold">Rekod Kehadiran</h2>
+                                <p class="text-purple-100">Senarai Kehadiran Pelajar yang Telah Disimpan</p>
+                            </div>
+                        </div>
+                        <button onclick="closeAttendanceRecords()" class="text-white hover:text-gray-200 p-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Content -->
+                <div class="p-6">
+                    <!-- Summary Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <div class="text-blue-600 text-sm font-medium">Jumlah Rekod</div>
+                            <div class="text-2xl font-bold text-blue-800" id="totalRecords">0</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="text-green-600 text-sm font-medium">Jumlah Pelajar</div>
+                            <div class="text-2xl font-bold text-green-800" id="totalStudentsInRecords">0</div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <div class="text-yellow-600 text-sm font-medium">Aktiviti Terbanyak</div>
+                            <div class="text-lg font-bold text-yellow-800" id="mostPopularActivity">-</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                            <div class="text-purple-600 text-sm font-medium">Rekod Terkini</div>
+                            <div class="text-lg font-bold text-purple-800" id="latestRecord">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Records List -->
+                    <div class="bg-white rounded-lg border border-gray-200">
+                        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 rounded-t-lg">
+                            <h3 class="font-semibold text-gray-800 text-lg">Senarai Rekod Kehadiran</h3>
+                        </div>
+                        <div id="recordsList" class="p-6">
+                            <div class="text-center py-12 text-gray-500">
+                                <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <p class="text-lg font-medium">Tiada rekod kehadiran lagi</p>
+                                <p class="text-sm">Sila daftar kehadiran terlebih dahulu untuk melihat rekod di sini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let attendanceData = [];
         let studentCounter = 0;
+        let savedAttendanceRecords = [];
+
+        // Database of students organized by co-curricular activities
+        const studentDatabase = {
+            'badminton': [
+                { name: 'Ahmad Faiz bin Abdullah', id: '051234-05-1234', class: '4A' },
+                { name: 'Siti Nurhaliza binti Hassan', id: '051235-05-1235', class: '4B' },
+                { name: 'Muhammad Aidil bin Rahman', id: '051236-05-1236', class: '5A' },
+                { name: 'Nurul Aina binti Zakaria', id: '051237-05-1237', class: '4A' },
+                { name: 'Khairul Anwar bin Ismail', id: '051238-05-1238', class: '5B' },
+                { name: 'Farah Diyana binti Ahmad', id: '051239-05-1239', class: '4B' }
+            ],
+            'bola-sepak': [
+                { name: 'Muhammad Haziq bin Omar', id: '051240-05-1240', class: '5A' },
+                { name: 'Aiman Hakim bin Rosli', id: '051241-05-1241', class: '4A' },
+                { name: 'Danial Irfan bin Sulaiman', id: '051242-05-1242', class: '5B' },
+                { name: 'Arif Hakimi bin Mohd Ali', id: '051243-05-1243', class: '4B' },
+                { name: 'Zulkarnain bin Ibrahim', id: '051244-05-1244', class: '5A' },
+                { name: 'Hafiz Iman bin Razak', id: '051245-05-1245', class: '4A' }
+            ],
+            'bola-keranjang': [
+                { name: 'Alya Damia binti Kamal', id: '051246-05-1246', class: '4B' },
+                { name: 'Iman Sofea binti Yusof', id: '051247-05-1247', class: '5A' },
+                { name: 'Qistina Balqis binti Hamid', id: '051248-05-1248', class: '4A' },
+                { name: 'Nur Batrisyia binti Azman', id: '051249-05-1249', class: '5B' },
+                { name: 'Aishah Humaira binti Nasir', id: '051250-05-1250', class: '4B' },
+                { name: 'Puteri Aisyah binti Razali', id: '051251-05-1251', class: '5A' }
+            ],
+            'kelab-sains': [
+                { name: 'Lim Wei Ming', id: '051252-05-1252', class: '5A' },
+                { name: 'Tan Hui Ling', id: '051253-05-1253', class: '4A' },
+                { name: 'Wong Kar Wai', id: '051254-05-1254', class: '5B' },
+                { name: 'Lee Xin Yi', id: '051255-05-1255', class: '4B' },
+                { name: 'Chong Wei Jie', id: '051256-05-1256', class: '5A' },
+                { name: 'Ng Shu Ting', id: '051257-05-1257', class: '4A' }
+            ],
+            'kelab-matematik': [
+                { name: 'Rajesh Kumar a/l Subramaniam', id: '051258-05-1258', class: '5A' },
+                { name: 'Priya Devi a/p Krishnan', id: '051259-05-1259', class: '4B' },
+                { name: 'Vikram Singh a/l Jasbir', id: '051260-05-1260', class: '5B' },
+                { name: 'Kavitha a/p Raman', id: '051261-05-1261', class: '4A' },
+                { name: 'Arjun a/l Mohan', id: '051262-05-1262', class: '5A' },
+                { name: 'Deepika a/p Selvam', id: '051263-05-1263', class: '4B' }
+            ],
+            'kelab-bahasa': [
+                { name: 'Nur Syafiqah binti Mahmud', id: '051264-05-1264', class: '4A' },
+                { name: 'Izzati Syahirah binti Kadir', id: '051265-05-1265', class: '5B' },
+                { name: 'Amirah Sofiya binti Rashid', id: '051266-05-1266', class: '4B' },
+                { name: 'Nabilah Insyirah binti Aziz', id: '051267-05-1267', class: '5A' },
+                { name: 'Wardina Safiyyah binti Halim', id: '051268-05-1268', class: '4A' },
+                { name: 'Zara Ameena binti Fauzi', id: '051269-05-1269', class: '5B' }
+            ],
+            'persatuan-sejarah': [
+                { name: 'Muhammad Luqman bin Hakim', id: '051270-05-1270', class: '5A' },
+                { name: 'Nur Izzah binti Samsudin', id: '051271-05-1271', class: '4B' },
+                { name: 'Haris Danial bin Zulkifli', id: '051272-05-1272', class: '5B' },
+                { name: 'Sofea Adriana binti Hashim', id: '051273-05-1273', class: '4A' },
+                { name: 'Irfan Hakeem bin Nordin', id: '051274-05-1274', class: '5A' },
+                { name: 'Amira Yasmin binti Ghazali', id: '051275-05-1275', class: '4B' }
+            ],
+            'kadet-polis': [
+                { name: 'Afiq Danial bin Roslan', id: '051276-05-1276', class: '5B' },
+                { name: 'Nur Aleya binti Mansor', id: '051277-05-1277', class: '4A' },
+                { name: 'Zikri Hakim bin Baharuddin', id: '051278-05-1278', class: '5A' },
+                { name: 'Aina Mardhiah binti Shaari', id: '051279-05-1279', class: '4B' },
+                { name: 'Hazwan Fikri bin Azhar', id: '051280-05-1280', class: '5B' },
+                { name: 'Balqis Humaira binti Ramli', id: '051281-05-1281', class: '4A' }
+            ]
+        };
 
         function openAttendanceForm() {
             document.getElementById('attendanceModal').classList.remove('hidden');
@@ -406,6 +597,15 @@
             document.getElementById('attendanceModal').classList.add('hidden');
         }
 
+        function openAttendanceRecords() {
+            document.getElementById('attendanceRecordsModal').classList.remove('hidden');
+            displayAttendanceRecords();
+        }
+
+        function closeAttendanceRecords() {
+            document.getElementById('attendanceRecordsModal').classList.add('hidden');
+        }
+
         // Close modal when clicking outside
         document.getElementById('attendanceModal').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -413,7 +613,282 @@
             }
         });
 
-        function addStudent() {
+        // Close records modal when clicking outside
+        document.getElementById('attendanceRecordsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAttendanceRecords();
+            }
+        });
+
+        function displayAttendanceRecords() {
+            const recordsList = document.getElementById('recordsList');
+            const totalRecordsEl = document.getElementById('totalRecords');
+            const totalStudentsEl = document.getElementById('totalStudentsInRecords');
+            const mostPopularActivityEl = document.getElementById('mostPopularActivity');
+            const latestRecordEl = document.getElementById('latestRecord');
+
+            if (savedAttendanceRecords.length === 0) {
+                recordsList.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <p class="text-lg font-medium">Tiada rekod kehadiran lagi</p>
+                        <p class="text-sm">Sila daftar kehadiran terlebih dahulu untuk melihat rekod di sini</p>
+                    </div>
+                `;
+                totalRecordsEl.textContent = '0';
+                totalStudentsEl.textContent = '0';
+                mostPopularActivityEl.textContent = '-';
+                latestRecordEl.textContent = '-';
+                return;
+            }
+
+            // Calculate statistics
+            const totalRecords = savedAttendanceRecords.length;
+            const totalStudents = savedAttendanceRecords.reduce((sum, record) => sum + record.totalStudents, 0);
+            
+            // Find most popular activity
+            const activityCount = {};
+            savedAttendanceRecords.forEach(record => {
+                activityCount[record.activity] = (activityCount[record.activity] || 0) + 1;
+            });
+            const mostPopular = Object.keys(activityCount).reduce((a, b) => activityCount[a] > activityCount[b] ? a : b, '-');
+            
+            // Latest record
+            const latest = savedAttendanceRecords[savedAttendanceRecords.length - 1];
+            const latestDate = new Date(latest.date).toLocaleDateString('ms-MY');
+
+            // Update statistics
+            totalRecordsEl.textContent = totalRecords;
+            totalStudentsEl.textContent = totalStudents;
+            mostPopularActivityEl.textContent = mostPopular;
+            latestRecordEl.textContent = latestDate;
+
+            // Display records
+            let html = '<div class="space-y-6">';
+            savedAttendanceRecords.forEach((record, index) => {
+                const recordDate = new Date(record.date).toLocaleDateString('ms-MY');
+                const createdDate = new Date(record.createdAt).toLocaleDateString('ms-MY');
+                const createdTime = new Date(record.createdAt).toLocaleTimeString('ms-MY');
+                
+                html += `
+                    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800">${record.activity}</h4>
+                                <div class="flex items-center space-x-4 text-sm text-gray-600 mt-1">
+                                    <span>📅 ${recordDate}</span>
+                                    <span>🕐 ${record.time}</span>
+                                    <span>👥 ${record.totalStudents} pelajar</span>
+                                </div>
+                            </div>
+                            <div class="text-right text-xs text-gray-500">
+                                <div>Disimpan: ${createdDate}</div>
+                                <div>${createdTime}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-medium text-gray-700 mb-3">Senarai Pelajar Hadir:</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                `;
+                
+                record.students.forEach(student => {
+                    html += `
+                        <div class="flex items-center space-x-2 text-sm">
+                            <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">
+                                ${student.counter}
+                            </div>
+                            <div>
+                                <div class="font-medium">${student.name}</div>
+                                <div class="text-gray-600 text-xs">${student.id} • ${student.class}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex justify-end">
+                            <button onclick="deleteRecord(${index})" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                                <span>Padam Rekod</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            recordsList.innerHTML = html;
+        }
+
+        function deleteRecord(index) {
+            if (confirm('Adakah anda pasti untuk memadam rekod ini? Tindakan ini tidak boleh dibatalkan.')) {
+                savedAttendanceRecords.splice(index, 1);
+                displayAttendanceRecords();
+            }
+        }
+
+        let currentMode = 'select'; // 'select' or 'manual'
+
+        // Activity change handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const activitySelect = document.getElementById('activityType');
+            if (activitySelect) {
+                activitySelect.addEventListener('change', function() {
+                    updateStudentList();
+                });
+            }
+        });
+
+        function switchToSelectMode() {
+            currentMode = 'select';
+            document.getElementById('selectFromListMode').classList.remove('hidden');
+            document.getElementById('manualEntryMode').classList.add('hidden');
+            document.getElementById('selectFromListBtn').classList.add('bg-blue-600', 'text-white');
+            document.getElementById('selectFromListBtn').classList.remove('text-gray-600', 'hover:text-gray-800');
+            document.getElementById('manualEntryBtn').classList.remove('bg-blue-600', 'text-white');
+            document.getElementById('manualEntryBtn').classList.add('text-gray-600', 'hover:text-gray-800');
+            updateStudentList();
+        }
+
+        function switchToManualMode() {
+            currentMode = 'manual';
+            document.getElementById('selectFromListMode').classList.add('hidden');
+            document.getElementById('manualEntryMode').classList.remove('hidden');
+            document.getElementById('manualEntryBtn').classList.add('bg-blue-600', 'text-white');
+            document.getElementById('manualEntryBtn').classList.remove('text-gray-600', 'hover:text-gray-800');
+            document.getElementById('selectFromListBtn').classList.remove('bg-blue-600', 'text-white');
+            document.getElementById('selectFromListBtn').classList.add('text-gray-600', 'hover:text-gray-800');
+        }
+
+        function updateStudentList() {
+            const activityType = document.getElementById('activityType').value;
+            const studentListContainer = document.getElementById('studentListContainer');
+            const noActivitySelected = document.getElementById('noActivitySelected');
+            const selectedActivityName = document.getElementById('selectedActivityName');
+            const studentCheckboxList = document.getElementById('studentCheckboxList');
+
+            if (!activityType || currentMode !== 'select') {
+                studentListContainer.classList.add('hidden');
+                noActivitySelected.classList.remove('hidden');
+                return;
+            }
+
+            const students = studentDatabase[activityType] || [];
+            if (students.length === 0) {
+                studentListContainer.classList.add('hidden');
+                noActivitySelected.classList.remove('hidden');
+                return;
+            }
+
+            // Show student list
+            studentListContainer.classList.remove('hidden');
+            noActivitySelected.classList.add('hidden');
+            
+            // Update activity name
+            const activityNames = {
+                'badminton': 'Badminton',
+                'bola-sepak': 'Bola Sepak',
+                'bola-keranjang': 'Bola Keranjang',
+                'kelab-sains': 'Kelab Sains',
+                'kelab-matematik': 'Kelab Matematik',
+                'kelab-bahasa': 'Kelab Bahasa',
+                'persatuan-sejarah': 'Persatuan Sejarah',
+                'kadet-polis': 'Kadet Polis'
+            };
+            selectedActivityName.textContent = activityNames[activityType] || activityType;
+
+            // Populate student checkboxes
+            let html = '';
+            students.forEach((student, index) => {
+                const isChecked = attendanceData.some(s => s.id === student.id) ? 'checked' : '';
+                html += `
+                    <label class="flex items-center p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" value="${student.id}" ${isChecked} onchange="toggleStudentSelection('${student.id}')" class="mr-3 text-blue-600 focus:ring-blue-500">
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-900 text-sm">${student.name}</div>
+                            <div class="text-xs text-gray-600">${student.id} • ${student.class}</div>
+                        </div>
+                    </label>
+                `;
+            });
+            studentCheckboxList.innerHTML = html;
+        }
+
+        function toggleStudentSelection(studentId) {
+            const activityType = document.getElementById('activityType').value;
+            const students = studentDatabase[activityType] || [];
+            const student = students.find(s => s.id === studentId);
+            
+            if (!student) return;
+
+            const existingIndex = attendanceData.findIndex(s => s.id === studentId);
+            
+            if (existingIndex >= 0) {
+                // Remove student
+                attendanceData.splice(existingIndex, 1);
+            } else {
+                // Add student
+                studentCounter++;
+                const studentData = {
+                    counter: studentCounter,
+                    name: student.name,
+                    id: student.id,
+                    class: student.class,
+                    timestamp: new Date().toLocaleTimeString('ms-MY')
+                };
+                attendanceData.push(studentData);
+            }
+            
+            updateAttendanceList();
+        }
+
+        function selectAllStudents() {
+            const activityType = document.getElementById('activityType').value;
+            const students = studentDatabase[activityType] || [];
+            
+            students.forEach(student => {
+                const existingIndex = attendanceData.findIndex(s => s.id === student.id);
+                if (existingIndex < 0) {
+                    studentCounter++;
+                    const studentData = {
+                        counter: studentCounter,
+                        name: student.name,
+                        id: student.id,
+                        class: student.class,
+                        timestamp: new Date().toLocaleTimeString('ms-MY')
+                    };
+                    attendanceData.push(studentData);
+                }
+            });
+            
+            updateAttendanceList();
+            updateStudentList(); // Refresh checkboxes
+        }
+
+        function clearAllStudents() {
+            const activityType = document.getElementById('activityType').value;
+            const students = studentDatabase[activityType] || [];
+            
+            students.forEach(student => {
+                const existingIndex = attendanceData.findIndex(s => s.id === student.id);
+                if (existingIndex >= 0) {
+                    attendanceData.splice(existingIndex, 1);
+                }
+            });
+            
+            updateAttendanceList();
+            updateStudentList(); // Refresh checkboxes
+        }
+
+        function addStudentManually() {
             const name = document.getElementById('studentName').value.trim();
             const studentId = document.getElementById('studentId').value.trim();
             const studentClass = document.getElementById('studentClass').value;
@@ -441,6 +916,11 @@
             attendanceData.push(student);
             updateAttendanceList();
             clearStudentForm();
+        }
+
+        // Legacy function for backward compatibility
+        function addStudent() {
+            addStudentManually();
         }
 
         function removeStudent(studentId) {
@@ -534,8 +1014,11 @@
                 createdAt: new Date().toISOString()
             };
 
+            // Save to records array
+            savedAttendanceRecords.push(attendanceRecord);
+
             // Show success message
-            alert(`Kehadiran berjaya disimpan!\n\nTarikh: ${date}\nAktiviti: ${activity}\nMasa: ${time}\nJumlah Pelajar: ${attendanceData.length}`);
+            alert(`Kehadiran berjaya disimpan!\n\nTarikh: ${date}\nAktiviti: ${activity}\nMasa: ${time}\nJumlah Pelajar: ${attendanceData.length}\n\nRekod boleh dilihat di bahagian "Rekod Kehadiran"`);
 
             // Reset form
             attendanceData = [];
@@ -555,5 +1038,6 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a0e819d10acbf6',t:'MTc1NzAyNDc2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a34a96f0d81fe1',t:'MTc1NzA0OTc3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
