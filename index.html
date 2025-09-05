@@ -522,6 +522,44 @@
                 <!-- Modal Content -->
                 <div class="p-6">
                     <form id="membershipForm" class="space-y-6">
+                        <!-- Timestamp (Auto-generated) -->
+                        <div class="bg-gray-100 rounded-lg p-4 border border-gray-300">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Timestamp: </span>
+                                <span id="memberTimestamp" class="text-sm text-gray-800 font-mono"></span>
+                            </div>
+                        </div>
+
+                        <!-- Co-curricular Selection -->
+                        <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                                Pilihan Kokurikulum
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Kokurikulum *</label>
+                                    <select id="memberCoCurricularType" onchange="updateUnitOptions()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                        <option value="">Pilih Jenis Kokurikulum</option>
+                                        <option value="kelab-persatuan">Kelab dan Persatuan</option>
+                                        <option value="sukan-permainan">Sukan dan Permainan</option>
+                                        <option value="badan-beruniform">Badan Beruniform</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Unit *</label>
+                                    <select id="memberUnit" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required disabled>
+                                        <option value="">Pilih jenis kokurikulum dahulu</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Personal Information -->
                         <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
                             <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
@@ -532,105 +570,63 @@
                             </h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Kelas *</label>
+                                    <select id="memberClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                        <option value="">Pilih Kelas</option>
+                                        <optgroup label="Tingkatan 1">
+                                            <option value="1 Hikmah">1 Hikmah</option>
+                                            <option value="1 Fatonah">1 Fatonah</option>
+                                            <option value="1 Amanah">1 Amanah</option>
+                                            <option value="1 Hasanah">1 Hasanah</option>
+                                        </optgroup>
+                                        <optgroup label="Tingkatan 2">
+                                            <option value="2 Hikmah">2 Hikmah</option>
+                                            <option value="2 Fatonah">2 Fatonah</option>
+                                            <option value="2 Amanah">2 Amanah</option>
+                                            <option value="2 Hasanah">2 Hasanah</option>
+                                        </optgroup>
+                                        <optgroup label="Tingkatan 3">
+                                            <option value="3 Hikmah">3 Hikmah</option>
+                                            <option value="3 Fatonah">3 Fatonah</option>
+                                            <option value="3 Amanah">3 Amanah</option>
+                                            <option value="3 Hasanah">3 Hasanah</option>
+                                        </optgroup>
+                                        <optgroup label="Tingkatan 4">
+                                            <option value="4 Taqwa">4 Taqwa</option>
+                                            <option value="4 Fatonah">4 Fatonah</option>
+                                            <option value="4 Amanah">4 Amanah</option>
+                                            <option value="4 Syariah">4 Syariah</option>
+                                        </optgroup>
+                                        <optgroup label="Tingkatan 5">
+                                            <option value="5 Taqwa">5 Taqwa</option>
+                                            <option value="5 Fatonah">5 Fatonah</option>
+                                            <option value="5 Amanah">5 Amanah</option>
+                                            <option value="5 Syariah">5 Syariah</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama Penuh *</label>
                                     <input type="text" id="memberName" placeholder="Nama penuh pelajar" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">No. K/P atau No. Pelajar *</label>
-                                    <input type="text" id="memberId" placeholder="123456-78-9012" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Kelas *</label>
-                                    <select id="memberClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
-                                        <option value="">Pilih Kelas</option>
-                                        <option value="1A">Tingkatan 1A</option>
-                                        <option value="1B">Tingkatan 1B</option>
-                                        <option value="2A">Tingkatan 2A</option>
-                                        <option value="2B">Tingkatan 2B</option>
-                                        <option value="3A">Tingkatan 3A</option>
-                                        <option value="3B">Tingkatan 3B</option>
-                                        <option value="4A">Tingkatan 4A</option>
-                                        <option value="4B">Tingkatan 4B</option>
-                                        <option value="5A">Tingkatan 5A</option>
-                                        <option value="5B">Tingkatan 5B</option>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Jantina *</label>
+                                    <select id="memberGender" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                        <option value="">Pilih Jantina</option>
+                                        <option value="lelaki">Lelaki</option>
+                                        <option value="perempuan">Perempuan</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">No. Telefon</label>
-                                    <input type="tel" id="memberPhone" placeholder="012-3456789" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">No. Kad Pengenalan *</label>
+                                    <input type="text" id="memberId" placeholder="123456-78-9012" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <p class="text-xs text-gray-500 mt-1">Format: 123456-78-9012</p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Activity Selection -->
-                        <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                                </svg>
-                                Pilihan Aktiviti Kokurikulum
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Aktiviti Utama *</label>
-                                    <select id="memberActivity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
-                                        <option value="">Pilih Aktiviti</option>
-                                        <optgroup label="🏃‍♂️ Sukan">
-                                            <option value="badminton">Badminton</option>
-                                            <option value="bola-sepak">Bola Sepak</option>
-                                            <option value="bola-keranjang">Bola Keranjang</option>
-                                        </optgroup>
-                                        <optgroup label="📚 Kelab Akademik">
-                                            <option value="kelab-sains">Kelab Sains</option>
-                                            <option value="kelab-matematik">Kelab Matematik</option>
-                                            <option value="kelab-bahasa">Kelab Bahasa</option>
-                                        </optgroup>
-                                        <optgroup label="🏛️ Persatuan">
-                                            <option value="persatuan-sejarah">Persatuan Sejarah</option>
-                                        </optgroup>
-                                        <optgroup label="👮‍♂️ Uniform">
-                                            <option value="kadet-polis">Kadet Polis</option>
-                                        </optgroup>
-                                    </select>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">No. Telefon Ibu/Bapa *</label>
+                                    <input type="tel" id="memberParentPhone" placeholder="012-3456789" pattern="[0-9]{3}-[0-9]{7,8}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <p class="text-xs text-gray-500 mt-1">Format: 012-3456789</p>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tarikh Mula Keahlian *</label>
-                                    <input type="date" id="memberStartDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Additional Information -->
-                        <div class="bg-yellow-50 rounded-lg p-6 border border-yellow-200">
-                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                </svg>
-                                Maklumat Tambahan
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Pengalaman Sebelum</label>
-                                    <select id="memberExperience" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
-                                        <option value="">Pilih Tahap Pengalaman</option>
-                                        <option value="tiada">Tiada Pengalaman</option>
-                                        <option value="asas">Pengalaman Asas</option>
-                                        <option value="sederhana">Pengalaman Sederhana</option>
-                                        <option value="mahir">Pengalaman Mahir</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Status Keahlian</label>
-                                    <select id="memberStatus" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
-                                        <option value="aktif">Aktif</option>
-                                        <option value="percubaan">Percubaan</option>
-                                        <option value="tidak-aktif">Tidak Aktif</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Catatan Tambahan</label>
-                                <textarea id="memberNotes" rows="3" placeholder="Catatan atau maklumat tambahan tentang pelajar..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"></textarea>
                             </div>
                         </div>
 
@@ -691,7 +687,7 @@
                             <div class="text-2xl font-bold text-blue-800" id="activeMembers">0</div>
                         </div>
                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <div class="text-yellow-600 text-sm font-medium">Aktiviti Terpopular</div>
+                            <div class="text-yellow-600 text-sm font-medium">Unit Terpopular</div>
                             <div class="text-lg font-bold text-yellow-800" id="popularActivity">-</div>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
@@ -704,26 +700,20 @@
                     <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
                         <div class="flex flex-wrap items-center gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Aktiviti</label>
-                                <select id="filterActivity" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
-                                    <option value="">Semua Aktiviti</option>
-                                    <option value="badminton">Badminton</option>
-                                    <option value="bola-sepak">Bola Sepak</option>
-                                    <option value="bola-keranjang">Bola Keranjang</option>
-                                    <option value="kelab-sains">Kelab Sains</option>
-                                    <option value="kelab-matematik">Kelab Matematik</option>
-                                    <option value="kelab-bahasa">Kelab Bahasa</option>
-                                    <option value="persatuan-sejarah">Persatuan Sejarah</option>
-                                    <option value="kadet-polis">Kadet Polis</option>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Jenis</label>
+                                <select id="filterCoCurricularType" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                    <option value="">Semua Jenis</option>
+                                    <option value="kelab-persatuan">Kelab dan Persatuan</option>
+                                    <option value="sukan-permainan">Sukan dan Permainan</option>
+                                    <option value="badan-beruniform">Badan Beruniform</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Status</label>
-                                <select id="filterStatus" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
-                                    <option value="">Semua Status</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="percubaan">Percubaan</option>
-                                    <option value="tidak-aktif">Tidak Aktif</option>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tapis mengikut Jantina</label>
+                                <select id="filterGender" onchange="filterMembershipRecords()" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                    <option value="">Semua Jantina</option>
+                                    <option value="lelaki">Lelaki</option>
+                                    <option value="perempuan">Perempuan</option>
                                 </select>
                             </div>
                             <div>
@@ -935,8 +925,88 @@
 
         function openMembershipForm() {
             document.getElementById('membershipModal').classList.remove('hidden');
-            // Set today's date as default for membership start date
-            document.getElementById('memberStartDate').value = new Date().toISOString().split('T')[0];
+            // Set current timestamp
+            updateTimestamp();
+        }
+
+        function updateTimestamp() {
+            const now = new Date();
+            const timestamp = now.toLocaleString('ms-MY', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('memberTimestamp').textContent = timestamp;
+        }
+
+        function updateUnitOptions() {
+            const coCurricularType = document.getElementById('memberCoCurricularType').value;
+            const unitSelect = document.getElementById('memberUnit');
+            
+            // Clear existing options
+            unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
+            
+            if (!coCurricularType) {
+                unitSelect.disabled = true;
+                unitSelect.innerHTML = '<option value="">Pilih jenis kokurikulum dahulu</option>';
+                return;
+            }
+            
+            unitSelect.disabled = false;
+            
+            let units = [];
+            
+            switch(coCurricularType) {
+                case 'kelab-persatuan':
+                    units = [
+                        'Bahasa Melayu',
+                        'Bahasa Arab', 
+                        'Bahasa Inggeris',
+                        'Inovasi dan Reka Cipta',
+                        'STEM',
+                        'Kebudayaan',
+                        'Fotografi',
+                        'Seni dan Khat',
+                        'Pencegahan Jenayah',
+                        'Nadi Huffaz/Qurra\'',
+                        'Kerjaya dan Bimbingan Kaunseling',
+                        'Usahawan Muda'
+                    ];
+                    break;
+                case 'sukan-permainan':
+                    units = [
+                        'Bola Sepak',
+                        'Bola Tampar',
+                        'Memanah Lelaki',
+                        'Ping Pong Lelaki',
+                        'Bola Jaring',
+                        'Bola Baling',
+                        'Memanah Perempuan',
+                        'Ping Pong Perempuan'
+                    ];
+                    break;
+                case 'badan-beruniform':
+                    units = [
+                        'Kadet Remaja Sekolah',
+                        'Kadet Sekolah Pertahanan Awam (L)',
+                        'Bulan Sabit Merah Malaysia (L)',
+                        'Pergerakan Puteri Islam Malaysia',
+                        'Kadet Sekolah Pertahanan Awam (P)',
+                        'Bulan Sabit Merah Malaysia (P)'
+                    ];
+                    break;
+            }
+            
+            units.forEach(unit => {
+                const option = document.createElement('option');
+                option.value = unit.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '').replace(/'/g, '');
+                option.textContent = unit;
+                unitSelect.appendChild(option);
+            });
         }
 
         function closeMembershipForm() {
@@ -1417,13 +1487,13 @@
             const totalMembers = filteredMembershipRecords.length;
             const activeMembers = filteredMembershipRecords.filter(member => member.status === 'aktif').length;
             
-            // Find most popular activity
-            const activityCount = {};
+            // Find most popular unit
+            const unitCount = {};
             filteredMembershipRecords.forEach(member => {
-                activityCount[member.activity] = (activityCount[member.activity] || 0) + 1;
+                unitCount[member.unitDisplayName] = (unitCount[member.unitDisplayName] || 0) + 1;
             });
-            const mostPopular = Object.keys(activityCount).length > 0 ? 
-                Object.keys(activityCount).reduce((a, b) => activityCount[a] > activityCount[b] ? a : b) : '-';
+            const mostPopular = Object.keys(unitCount).length > 0 ? 
+                Object.keys(unitCount).reduce((a, b) => unitCount[a] > unitCount[b] ? a : b) : '-';
             
             // Latest member
             const latest = filteredMembershipRecords.length > 0 ? 
@@ -1458,21 +1528,16 @@
                 const joinDate = new Date(member.startDate).toLocaleDateString('ms-MY');
                 const createdDate = new Date(member.createdAt).toLocaleDateString('ms-MY');
                 
-                const statusColors = {
-                    'aktif': 'bg-green-100 text-green-800',
-                    'percubaan': 'bg-yellow-100 text-yellow-800',
-                    'tidak-aktif': 'bg-red-100 text-red-800'
+                const typeColors = {
+                    'kelab-persatuan': 'bg-blue-100 text-blue-800',
+                    'sukan-permainan': 'bg-green-100 text-green-800',
+                    'badan-beruniform': 'bg-purple-100 text-purple-800'
                 };
 
-                const activityNames = {
-                    'badminton': 'Badminton',
-                    'bola-sepak': 'Bola Sepak',
-                    'bola-keranjang': 'Bola Keranjang',
-                    'kelab-sains': 'Kelab Sains',
-                    'kelab-matematik': 'Kelab Matematik',
-                    'kelab-bahasa': 'Kelab Bahasa',
-                    'persatuan-sejarah': 'Persatuan Sejarah',
-                    'kadet-polis': 'Kadet Polis'
+                const typeNames = {
+                    'kelab-persatuan': 'Kelab dan Persatuan',
+                    'sukan-permainan': 'Sukan dan Permainan',
+                    'badan-beruniform': 'Badan Beruniform'
                 };
                 
                 html += `
@@ -1481,11 +1546,11 @@
                             <div class="flex-1">
                                 <h4 class="text-lg font-semibold text-gray-800">${member.name}</h4>
                                 <p class="text-sm text-gray-600">${member.id}</p>
-                                <p class="text-sm text-gray-600">Kelas ${member.class}</p>
+                                <p class="text-sm text-gray-600">Kelas ${member.class} • ${member.gender.charAt(0).toUpperCase() + member.gender.slice(1)}</p>
                             </div>
                             <div class="text-right">
-                                <span class="px-2 py-1 text-xs font-medium rounded-full ${statusColors[member.status] || 'bg-gray-100 text-gray-800'}">
-                                    ${member.status.charAt(0).toUpperCase() + member.status.slice(1)}
+                                <span class="px-2 py-1 text-xs font-medium rounded-full ${typeColors[member.coCurricularType] || 'bg-gray-100 text-gray-800'}">
+                                    ${typeNames[member.coCurricularType] || member.coCurricularType}
                                 </span>
                             </div>
                         </div>
@@ -1495,37 +1560,21 @@
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                                 </svg>
-                                ${activityNames[member.activity] || member.activity}
+                                Unit: ${member.unitDisplayName}
                             </div>
                             <div class="flex items-center text-sm text-gray-600">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                 </svg>
-                                Mula: ${joinDate}
+                                Tel. Ibu/Bapa: ${member.parentPhone}
                             </div>
-                            ${member.phone ? `
-                                <div class="flex items-center text-sm text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                    </svg>
-                                    ${member.phone}
-                                </div>
-                            ` : ''}
-                            ${member.experience ? `
-                                <div class="flex items-center text-sm text-gray-600">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                                    </svg>
-                                    Pengalaman: ${member.experience.charAt(0).toUpperCase() + member.experience.slice(1)}
-                                </div>
-                            ` : ''}
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Timestamp: ${member.timestamp}
+                            </div>
                         </div>
-                        
-                        ${member.notes ? `
-                            <div class="bg-gray-50 rounded-lg p-3 mb-4">
-                                <p class="text-sm text-gray-700">${member.notes}</p>
-                            </div>
-                        ` : ''}
                         
                         <div class="flex justify-between items-center text-xs text-gray-500 pt-3 border-t border-gray-100">
                             <span>Didaftar: ${createdDate}</span>
@@ -1542,18 +1591,19 @@
         }
 
         function filterMembershipRecords() {
-            const activityFilter = document.getElementById('filterActivity').value;
-            const statusFilter = document.getElementById('filterStatus').value;
+            const typeFilter = document.getElementById('filterCoCurricularType').value;
+            const genderFilter = document.getElementById('filterGender').value;
             const searchTerm = document.getElementById('searchMember').value.toLowerCase();
 
             filteredMembershipRecords = savedMembershipRecords.filter(member => {
-                const matchesActivity = !activityFilter || member.activity === activityFilter;
-                const matchesStatus = !statusFilter || member.status === statusFilter;
+                const matchesType = !typeFilter || member.coCurricularType === typeFilter;
+                const matchesGender = !genderFilter || member.gender === genderFilter;
                 const matchesSearch = !searchTerm || 
                     member.name.toLowerCase().includes(searchTerm) ||
-                    member.id.toLowerCase().includes(searchTerm);
+                    member.id.toLowerCase().includes(searchTerm) ||
+                    member.class.toLowerCase().includes(searchTerm);
                 
-                return matchesActivity && matchesStatus && matchesSearch;
+                return matchesType && matchesGender && matchesSearch;
             });
 
             updateMembershipStats();
@@ -1568,53 +1618,71 @@
         }
 
         function clearMembershipForm() {
-            document.getElementById('memberName').value = '';
-            document.getElementById('memberId').value = '';
+            document.getElementById('memberCoCurricularType').value = '';
+            document.getElementById('memberUnit').value = '';
+            document.getElementById('memberUnit').disabled = true;
+            document.getElementById('memberUnit').innerHTML = '<option value="">Pilih jenis kokurikulum dahulu</option>';
             document.getElementById('memberClass').value = '';
-            document.getElementById('memberPhone').value = '';
-            document.getElementById('memberActivity').value = '';
-            document.getElementById('memberStartDate').value = new Date().toISOString().split('T')[0];
-            document.getElementById('memberExperience').value = '';
-            document.getElementById('memberStatus').value = 'aktif';
-            document.getElementById('memberNotes').value = '';
+            document.getElementById('memberName').value = '';
+            document.getElementById('memberGender').value = '';
+            document.getElementById('memberId').value = '';
+            document.getElementById('memberParentPhone').value = '';
+            updateTimestamp();
         }
 
         // Handle membership form submission
         document.getElementById('membershipForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('memberName').value.trim();
-            const memberId = document.getElementById('memberId').value.trim();
+            const timestamp = document.getElementById('memberTimestamp').textContent;
+            const coCurricularType = document.getElementById('memberCoCurricularType').value;
+            const unit = document.getElementById('memberUnit').value;
             const memberClass = document.getElementById('memberClass').value;
-            const phone = document.getElementById('memberPhone').value.trim();
-            const activity = document.getElementById('memberActivity').value;
-            const startDate = document.getElementById('memberStartDate').value;
-            const experience = document.getElementById('memberExperience').value;
-            const status = document.getElementById('memberStatus').value;
-            const notes = document.getElementById('memberNotes').value.trim();
+            const name = document.getElementById('memberName').value.trim();
+            const gender = document.getElementById('memberGender').value;
+            const memberId = document.getElementById('memberId').value.trim();
+            const parentPhone = document.getElementById('memberParentPhone').value.trim();
 
-            if (!name || !memberId || !memberClass || !activity || !startDate) {
+            if (!coCurricularType || !unit || !memberClass || !name || !gender || !memberId || !parentPhone) {
                 alert('Sila lengkapkan semua medan yang wajib diisi (bertanda *)');
+                return;
+            }
+
+            // Validate IC format
+            const icPattern = /^[0-9]{6}-[0-9]{2}-[0-9]{4}$/;
+            if (!icPattern.test(memberId)) {
+                alert('Format No. Kad Pengenalan tidak sah. Sila gunakan format: 123456-78-9012');
+                return;
+            }
+
+            // Validate phone format
+            const phonePattern = /^[0-9]{3}-[0-9]{7,8}$/;
+            if (!phonePattern.test(parentPhone)) {
+                alert('Format No. Telefon tidak sah. Sila gunakan format: 012-3456789');
                 return;
             }
 
             // Check for duplicate member ID
             if (savedMembershipRecords.some(member => member.id === memberId)) {
-                alert('Ahli dengan No. K/P atau No. Pelajar ini sudah berdaftar');
+                alert('Ahli dengan No. Kad Pengenalan ini sudah berdaftar');
                 return;
             }
 
+            // Get unit display name
+            const unitSelect = document.getElementById('memberUnit');
+            const unitDisplayName = unitSelect.options[unitSelect.selectedIndex].text;
+
             // Create membership record
             const membershipRecord = {
-                name: name,
-                id: memberId,
+                timestamp: timestamp,
+                coCurricularType: coCurricularType,
+                unit: unit,
+                unitDisplayName: unitDisplayName,
                 class: memberClass,
-                phone: phone,
-                activity: activity,
-                startDate: startDate,
-                experience: experience,
-                status: status,
-                notes: notes,
+                name: name,
+                gender: gender,
+                id: memberId,
+                parentPhone: parentPhone,
                 createdAt: new Date().toISOString()
             };
 
@@ -1622,18 +1690,13 @@
             savedMembershipRecords.push(membershipRecord);
 
             // Show success message
-            const activityNames = {
-                'badminton': 'Badminton',
-                'bola-sepak': 'Bola Sepak',
-                'bola-keranjang': 'Bola Keranjang',
-                'kelab-sains': 'Kelab Sains',
-                'kelab-matematik': 'Kelab Matematik',
-                'kelab-bahasa': 'Kelab Bahasa',
-                'persatuan-sejarah': 'Persatuan Sejarah',
-                'kadet-polis': 'Kadet Polis'
+            const typeNames = {
+                'kelab-persatuan': 'Kelab dan Persatuan',
+                'sukan-permainan': 'Sukan dan Permainan',
+                'badan-beruniform': 'Badan Beruniform'
             };
 
-            alert(`Keahlian berjaya didaftarkan!\n\nNama: ${name}\nAktiviti: ${activityNames[activity] || activity}\nStatus: ${status.charAt(0).toUpperCase() + status.slice(1)}\n\nRekod boleh dilihat di bahagian "Rekod Keahlian"`);
+            alert(`Keahlian berjaya didaftarkan!\n\nNama: ${name}\nJenis: ${typeNames[coCurricularType]}\nUnit: ${unitDisplayName}\nKelas: ${memberClass}\n\nRekod boleh dilihat di bahagian "Rekod Keahlian"`);
 
             // Reset form
             clearMembershipForm();
@@ -1649,5 +1712,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3592bc2721fe1',t:'MTc1NzA1MDM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a36de161461fe1',t:'MTc1NzA1MTIxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
