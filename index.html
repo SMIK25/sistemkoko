@@ -568,41 +568,22 @@
                                 </svg>
                                 Maklumat Peribadi Pelajar
                             </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tingkatan *</label>
+                                    <select id="memberForm" onchange="updateClassOptions()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                        <option value="">Pilih Tingkatan</option>
+                                        <option value="1">Tingkatan 1</option>
+                                        <option value="2">Tingkatan 2</option>
+                                        <option value="3">Tingkatan 3</option>
+                                        <option value="4">Tingkatan 4</option>
+                                        <option value="5">Tingkatan 5</option>
+                                    </select>
+                                </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Kelas *</label>
-                                    <select id="memberClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
-                                        <option value="">Pilih Kelas</option>
-                                        <optgroup label="Tingkatan 1">
-                                            <option value="1 Hikmah">1 Hikmah</option>
-                                            <option value="1 Fatonah">1 Fatonah</option>
-                                            <option value="1 Amanah">1 Amanah</option>
-                                            <option value="1 Hasanah">1 Hasanah</option>
-                                        </optgroup>
-                                        <optgroup label="Tingkatan 2">
-                                            <option value="2 Hikmah">2 Hikmah</option>
-                                            <option value="2 Fatonah">2 Fatonah</option>
-                                            <option value="2 Amanah">2 Amanah</option>
-                                            <option value="2 Hasanah">2 Hasanah</option>
-                                        </optgroup>
-                                        <optgroup label="Tingkatan 3">
-                                            <option value="3 Hikmah">3 Hikmah</option>
-                                            <option value="3 Fatonah">3 Fatonah</option>
-                                            <option value="3 Amanah">3 Amanah</option>
-                                            <option value="3 Hasanah">3 Hasanah</option>
-                                        </optgroup>
-                                        <optgroup label="Tingkatan 4">
-                                            <option value="4 Taqwa">4 Taqwa</option>
-                                            <option value="4 Fatonah">4 Fatonah</option>
-                                            <option value="4 Amanah">4 Amanah</option>
-                                            <option value="4 Syariah">4 Syariah</option>
-                                        </optgroup>
-                                        <optgroup label="Tingkatan 5">
-                                            <option value="5 Taqwa">5 Taqwa</option>
-                                            <option value="5 Fatonah">5 Fatonah</option>
-                                            <option value="5 Amanah">5 Amanah</option>
-                                            <option value="5 Syariah">5 Syariah</option>
-                                        </optgroup>
+                                    <select id="memberClass" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required disabled>
+                                        <option value="">Pilih tingkatan dahulu</option>
                                     </select>
                                 </div>
                                 <div>
@@ -1006,6 +987,49 @@
                 option.value = unit.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '').replace(/'/g, '');
                 option.textContent = unit;
                 unitSelect.appendChild(option);
+            });
+        }
+
+        function updateClassOptions() {
+            const formLevel = document.getElementById('memberForm').value;
+            const classSelect = document.getElementById('memberClass');
+            
+            // Clear existing options
+            classSelect.innerHTML = '<option value="">Pilih Kelas</option>';
+            
+            if (!formLevel) {
+                classSelect.disabled = true;
+                classSelect.innerHTML = '<option value="">Pilih tingkatan dahulu</option>';
+                return;
+            }
+            
+            classSelect.disabled = false;
+            
+            let classes = [];
+            
+            switch(formLevel) {
+                case '1':
+                    classes = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+                    break;
+                case '2':
+                    classes = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+                    break;
+                case '3':
+                    classes = ['Hikmah', 'Fatonah', 'Amanah', 'Hasanah'];
+                    break;
+                case '4':
+                    classes = ['Taqwa', 'Fatonah', 'Amanah', 'Syariah'];
+                    break;
+                case '5':
+                    classes = ['Taqwa', 'Fatonah', 'Amanah', 'Syariah'];
+                    break;
+            }
+            
+            classes.forEach(className => {
+                const option = document.createElement('option');
+                option.value = `${formLevel} ${className}`;
+                option.textContent = className;
+                classSelect.appendChild(option);
             });
         }
 
@@ -1622,7 +1646,10 @@
             document.getElementById('memberUnit').value = '';
             document.getElementById('memberUnit').disabled = true;
             document.getElementById('memberUnit').innerHTML = '<option value="">Pilih jenis kokurikulum dahulu</option>';
+            document.getElementById('memberForm').value = '';
             document.getElementById('memberClass').value = '';
+            document.getElementById('memberClass').disabled = true;
+            document.getElementById('memberClass').innerHTML = '<option value="">Pilih tingkatan dahulu</option>';
             document.getElementById('memberName').value = '';
             document.getElementById('memberGender').value = '';
             document.getElementById('memberId').value = '';
@@ -1637,13 +1664,14 @@
             const timestamp = document.getElementById('memberTimestamp').textContent;
             const coCurricularType = document.getElementById('memberCoCurricularType').value;
             const unit = document.getElementById('memberUnit').value;
+            const memberForm = document.getElementById('memberForm').value;
             const memberClass = document.getElementById('memberClass').value;
             const name = document.getElementById('memberName').value.trim();
             const gender = document.getElementById('memberGender').value;
             const memberId = document.getElementById('memberId').value.trim();
             const parentPhone = document.getElementById('memberParentPhone').value.trim();
 
-            if (!coCurricularType || !unit || !memberClass || !name || !gender || !memberId || !parentPhone) {
+            if (!coCurricularType || !unit || !memberForm || !memberClass || !name || !gender || !memberId || !parentPhone) {
                 alert('Sila lengkapkan semua medan yang wajib diisi (bertanda *)');
                 return;
             }
@@ -1712,5 +1740,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a36de161461fe1',t:'MTc1NzA1MTIxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3726b91db1fe1',t:'MTc1NzA1MTQwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
