@@ -80,7 +80,7 @@
         </div>
 
         <!-- Dashboard Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
             <!-- Row 1: Daftar (Registers) -->
             <!-- Daftar Keahlian -->
             <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-emerald-500 relative">
@@ -163,23 +163,7 @@
                 <div class="flow-arrow" style="right: -68px; top: 50%; transform: translateY(-50%);"></div>
             </div>
 
-            <!-- Daftar Laporan Mingguan -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-green-500 relative">
-                <div class="flex items-center mb-4">
-                    <div class="bg-green-100 p-3 rounded-xl mr-4">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 text-lg">Daftar Laporan Mingguan</h3>
-                        <p class="text-sm text-gray-600">Weekly Report Register</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm">Pendaftaran laporan aktiviti mingguan</p>
-                <!-- Flow arrow to record -->
-                <div class="flow-arrow" style="right: -68px; top: 50%; transform: translateY(-50%);"></div>
-            </div>
+
 
             <!-- Daftar Jadual Aktiviti Tahunan Unit -->
             <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-indigo-500 relative">
@@ -235,23 +219,34 @@
                 <div class="flow-arrow" style="right: -68px; top: 50%; transform: translateY(-50%);"></div>
             </div>
 
-            <!-- Daftar Pencapaian Murid -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-pink-500 relative">
+            <!-- Daftar Minit Mesyuarat Agung Unit -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-rose-500 relative">
                 <div class="flex items-center mb-4">
-                    <div class="bg-pink-100 p-3 rounded-xl mr-4">
-                        <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    <div class="bg-rose-100 p-3 rounded-xl mr-4">
+                        <svg class="w-8 h-8 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-800 text-lg">Daftar Pencapaian Murid</h3>
-                        <p class="text-sm text-gray-600">Student Achievement Register</p>
+                        <h3 class="font-semibold text-gray-800 text-lg">Daftar Minit Mesyuarat Agung Unit</h3>
+                        <p class="text-sm text-gray-600">AGM Minutes Register</p>
                     </div>
                 </div>
-                <p class="text-gray-600 text-sm">Pendaftaran pencapaian dan prestasi pelajar</p>
+                <p class="text-gray-600 text-sm mb-4">Pendaftaran minit mesyuarat agung unit</p>
+                
+                <!-- Open Form Button -->
+                <button onclick="openMeetingForm()" class="w-full bg-rose-600 text-white px-4 py-3 rounded-lg hover:bg-rose-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span>Daftar Minit Mesyuarat</span>
+                </button>
+                
                 <!-- Flow arrow to record -->
                 <div class="flow-arrow" style="right: -68px; top: 50%; transform: translateY(-50%);"></div>
             </div>
+
+
 
             <!-- Row 2: Rekod (Records) -->
             <!-- Rekod Keahlian -->
@@ -379,37 +374,34 @@
                 </button>
             </div>
 
-            <!-- Rekod Laporan Mingguan -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-indigo-500">
+
+
+            <!-- Rekod Minit Mesyuarat Agung Unit -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-rose-500">
                 <div class="flex items-center mb-4">
-                    <div class="bg-indigo-100 p-3 rounded-xl mr-4">
-                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                    <div class="bg-rose-100 p-3 rounded-xl mr-4">
+                        <svg class="w-8 h-8 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-gray-800 text-lg">Rekod Laporan Mingguan</h3>
-                        <p class="text-sm text-gray-600">Weekly Report Record</p>
+                        <h3 class="font-semibold text-gray-800 text-lg">Rekod Minit Mesyuarat Agung Unit</h3>
+                        <p class="text-sm text-gray-600">AGM Minutes Record</p>
                     </div>
                 </div>
-                <p class="text-gray-600 text-sm">Rekod dan statistik laporan mingguan</p>
+                <p class="text-gray-600 text-sm mb-4">Rekod dan arkib minit mesyuarat agung</p>
+                
+                <!-- View Records Button -->
+                <button onclick="openMeetingRecords()" class="w-full bg-rose-600 text-white px-4 py-3 rounded-lg hover:bg-rose-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                    <span>Lihat Rekod Minit</span>
+                </button>
             </div>
 
-            <!-- Rekod Pencapaian Murid -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-pink-500">
-                <div class="flex items-center mb-4">
-                    <div class="bg-pink-100 p-3 rounded-xl mr-4">
-                        <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 text-lg">Rekod Pencapaian Murid</h3>
-                        <p class="text-sm text-gray-600">Student Achievement Record</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm">Rekod dan portfolio pencapaian pelajar</p>
-            </div>
+
         </div>
 
         <!-- School Elements -->
@@ -442,6 +434,12 @@
                             <li>• Arkib maklumat</li>
                         </ul>
                     </div>
+                </div>
+                <div class="mt-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+                    <p class="text-sm text-gray-700">
+                        <strong>Sistem Lengkap:</strong> Dashboard sekarang mempunyai 12 section lengkap (6 daftar + 6 rekod) 
+                        termasuk pengurusan keahlian, kehadiran, jawatankuasa, jadual aktiviti, kewangan, dan minit mesyuarat agung unit.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1725,6 +1723,299 @@
         </div>
     </div>
 
+    <!-- Meeting Form Modal -->
+    <div id="meetingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="bg-rose-600 text-white p-6 rounded-t-2xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <div>
+                                <h2 class="text-2xl font-bold">Borang Daftar Minit Mesyuarat Agung Unit</h2>
+                                <p class="text-rose-100">Pendaftaran Minit Mesyuarat Agung Kokurikulum</p>
+                            </div>
+                        </div>
+                        <button onclick="closeMeetingForm()" class="text-white hover:text-gray-200 p-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Content -->
+                <div class="p-6">
+                    <form id="meetingForm" class="space-y-6">
+                        <!-- Timestamp (Auto-generated) -->
+                        <div class="bg-gray-100 rounded-lg p-4 border border-gray-300">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Timestamp: </span>
+                                <span id="meetingTimestamp" class="text-sm text-gray-800 font-mono"></span>
+                            </div>
+                        </div>
+
+                        <!-- Unit Information -->
+                        <div class="bg-rose-50 rounded-lg p-6 border border-rose-200">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                Maklumat Unit
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Kokurikulum *</label>
+                                    <select id="meetingCoCurricularType" onchange="updateMeetingUnitOptions()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                        <option value="">Pilih Jenis Kokurikulum</option>
+                                        <option value="kelab-persatuan">Kelab dan Persatuan</option>
+                                        <option value="sukan-permainan">Sukan dan Permainan</option>
+                                        <option value="badan-beruniform">Badan Beruniform</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Unit *</label>
+                                    <select id="meetingUnit" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required disabled>
+                                        <option value="">Pilih jenis kokurikulum dahulu</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Meeting Information -->
+                        <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Maklumat Mesyuarat
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Mesyuarat *</label>
+                                    <select id="meetingType" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                        <option value="">Pilih Jenis Mesyuarat</option>
+                                        <option value="mesyuarat-agung-tahunan">Mesyuarat Agung Tahunan</option>
+                                        <option value="mesyuarat-agung-khas">Mesyuarat Agung Khas</option>
+                                        <option value="mesyuarat-jawatankuasa">Mesyuarat Jawatankuasa</option>
+                                        <option value="mesyuarat-kecemasan">Mesyuarat Kecemasan</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tahun Sesi *</label>
+                                    <select id="meetingYear" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                        <option value="">Pilih Tahun</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tarikh Mesyuarat *</label>
+                                    <input type="date" id="meetingDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Masa Mesyuarat *</label>
+                                    <input type="time" id="meetingTime" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tempat Mesyuarat *</label>
+                                    <input type="text" id="meetingVenue" placeholder="Contoh: Bilik Mesyuarat, Dewan Sekolah" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Pengerusi Mesyuarat *</label>
+                                    <input type="text" id="meetingChairperson" placeholder="Nama pengerusi mesyuarat" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Setiausaha Mesyuarat *</label>
+                                    <input type="text" id="meetingSecretary" placeholder="Nama setiausaha mesyuarat" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Jumlah Kehadiran *</label>
+                                    <input type="number" id="attendanceCount" min="1" placeholder="Bilangan ahli hadir" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Meeting Agenda -->
+                        <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                                </svg>
+                                Agenda Mesyuarat
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Agenda Utama *</label>
+                                    <textarea id="mainAgenda" rows="4" placeholder="Senaraikan agenda utama mesyuarat..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Perbincangan dan Keputusan *</label>
+                                    <textarea id="discussions" rows="6" placeholder="Ringkasan perbincangan dan keputusan yang dibuat..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500" required></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tindakan Susulan</label>
+                                    <textarea id="actionItems" rows="4" placeholder="Tindakan yang perlu diambil dan PIC yang bertanggungjawab..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tarikh Mesyuarat Seterusnya</label>
+                                    <input type="date" id="nextMeetingDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Catatan Tambahan</label>
+                                    <textarea id="additionalNotes" rows="3" placeholder="Catatan atau maklumat tambahan..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div class="text-sm text-gray-600">
+                                * Medan wajib diisi
+                            </div>
+                            <div class="space-x-3">
+                                <button type="button" onclick="clearMeetingForm()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                                    🗑️ Kosongkan
+                                </button>
+                                <button type="submit" class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors font-medium">
+                                    💾 Simpan Minit Mesyuarat
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meeting Records Modal -->
+    <div id="meetingRecordsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="bg-rose-600 text-white p-6 rounded-t-2xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <div>
+                                <h2 class="text-2xl font-bold">Rekod Minit Mesyuarat Agung Unit</h2>
+                                <p class="text-rose-100">Senarai Minit Mesyuarat yang Telah Didaftarkan</p>
+                            </div>
+                        </div>
+                        <button onclick="closeMeetingRecords()" class="text-white hover:text-gray-200 p-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Content -->
+                <div class="p-6">
+                    <!-- Summary Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-rose-50 p-4 rounded-lg border border-rose-200">
+                            <div class="text-rose-600 text-sm font-medium">Jumlah Mesyuarat</div>
+                            <div class="text-2xl font-bold text-rose-800" id="totalMeetings">0</div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <div class="text-blue-600 text-sm font-medium">Unit Aktif</div>
+                            <div class="text-2xl font-bold text-blue-800" id="activeMeetingUnits">0</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="text-green-600 text-sm font-medium">Mesyuarat Tahun Ini</div>
+                            <div class="text-2xl font-bold text-green-800" id="thisYearMeetings">0</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                            <div class="text-purple-600 text-sm font-medium">Mesyuarat Terkini</div>
+                            <div class="text-lg font-bold text-purple-800" id="latestMeeting">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Section -->
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Penapis Rekod Minit Mesyuarat</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Jenis</label>
+                                <select id="filterMeetingCoCurricularType" onchange="updateMeetingUnitFilter(); filterMeetingRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                                    <option value="">Semua Jenis</option>
+                                    <option value="kelab-persatuan">Kelab dan Persatuan</option>
+                                    <option value="sukan-permainan">Sukan dan Permainan</option>
+                                    <option value="badan-beruniform">Badan Beruniform</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Unit</label>
+                                <select id="filterMeetingUnit" onchange="filterMeetingRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                                    <option value="">Semua Unit</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Mesyuarat</label>
+                                <select id="filterMeetingType" onchange="filterMeetingRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                                    <option value="">Semua Jenis</option>
+                                    <option value="mesyuarat-agung-tahunan">Mesyuarat Agung Tahunan</option>
+                                    <option value="mesyuarat-agung-khas">Mesyuarat Agung Khas</option>
+                                    <option value="mesyuarat-jawatankuasa">Mesyuarat Jawatankuasa</option>
+                                    <option value="mesyuarat-kecemasan">Mesyuarat Kecemasan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tahun</label>
+                                <select id="filterMeetingYear" onchange="filterMeetingRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                                    <option value="">Semua Tahun</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Cari</label>
+                                <input type="text" id="searchMeeting" placeholder="Pengerusi/Agenda" onkeyup="filterMeetingRecords()" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-end">
+                            <button onclick="clearAllMeetingFilters()" class="text-rose-600 hover:text-rose-800 text-sm font-medium flex items-center space-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                <span>Kosongkan Semua Penapis</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meeting Records List -->
+                    <div class="bg-white rounded-lg border border-gray-200">
+                        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 rounded-t-lg">
+                            <h3 class="font-semibold text-gray-800 text-lg">Senarai Minit Mesyuarat</h3>
+                        </div>
+                        <div id="meetingList" class="p-6">
+                            <div class="text-center py-12 text-gray-500">
+                                <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <p class="text-lg font-medium">Tiada minit mesyuarat berdaftar lagi</p>
+                                <p class="text-sm">Sila daftar minit mesyuarat terlebih dahulu untuk melihat rekod di sini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Attendance Records Modal -->
     <div id="attendanceRecordsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
         <div class="flex items-center justify-center min-h-screen p-4">
@@ -1798,6 +2089,7 @@
         let committeeData = JSON.parse(localStorage.getItem('committeeData')) || [];
         let scheduleData = JSON.parse(localStorage.getItem('scheduleData')) || [];
         let financialData = JSON.parse(localStorage.getItem('financialData')) || [];
+        let meetingData = JSON.parse(localStorage.getItem('meetingData')) || [];
         let attendanceList = [];
 
         // Co-curricular data
@@ -1883,6 +2175,9 @@
             }
             if (document.getElementById('financialTimestamp')) {
                 document.getElementById('financialTimestamp').textContent = timestamp;
+            }
+            if (document.getElementById('meetingTimestamp')) {
+                document.getElementById('meetingTimestamp').textContent = timestamp;
             }
         }
 
@@ -1977,6 +2272,27 @@
 
         function closeScheduleRecords() {
             document.getElementById('scheduleRecordsModal').classList.add('hidden');
+        }
+
+        function openMeetingForm() {
+            document.getElementById('meetingModal').classList.remove('hidden');
+            updateTimestamps();
+            // Set current date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('meetingDate').value = today;
+        }
+
+        function closeMeetingForm() {
+            document.getElementById('meetingModal').classList.add('hidden');
+        }
+
+        function openMeetingRecords() {
+            document.getElementById('meetingRecordsModal').classList.remove('hidden');
+            displayMeetingRecords();
+        }
+
+        function closeMeetingRecords() {
+            document.getElementById('meetingRecordsModal').classList.add('hidden');
         }
 
         // Update unit options based on co-curricular type
@@ -2201,6 +2517,40 @@
             document.getElementById('transactionDate').value = today;
         }
 
+        // Meeting form functions
+        function updateMeetingUnitOptions() {
+            const typeSelect = document.getElementById('meetingCoCurricularType');
+            const unitSelect = document.getElementById('meetingUnit');
+            
+            const selectedType = typeSelect.value;
+            
+            // Clear existing options
+            unitSelect.innerHTML = '<option value="">Pilih Unit</option>';
+            
+            if (selectedType && coCurricularUnits[selectedType]) {
+                unitSelect.disabled = false;
+                coCurricularUnits[selectedType].forEach(unit => {
+                    const option = document.createElement('option');
+                    option.value = unit.toLowerCase().replace(/\s+/g, '-');
+                    option.textContent = unit;
+                    unitSelect.appendChild(option);
+                });
+            } else {
+                unitSelect.disabled = true;
+                unitSelect.innerHTML = '<option value="">Pilih jenis kokurikulum dahulu</option>';
+            }
+        }
+
+        function clearMeetingForm() {
+            document.getElementById('meetingForm').reset();
+            document.getElementById('meetingUnit').disabled = true;
+            document.getElementById('meetingUnit').innerHTML = '<option value="">Pilih jenis kokurikulum dahulu</option>';
+            updateTimestamps();
+            // Set current date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('meetingDate').value = today;
+        }
+
         // Clear membership form
         function clearMembershipForm() {
             document.getElementById('membershipForm').reset();
@@ -2341,6 +2691,44 @@
             
             // Close modal
             closeFinancialForm();
+        });
+
+        // Handle meeting form submission
+        document.getElementById('meetingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                id: Date.now(),
+                timestamp: document.getElementById('meetingTimestamp').textContent,
+                coCurricularType: document.getElementById('meetingCoCurricularType').value,
+                unit: document.getElementById('meetingUnit').value,
+                meetingType: document.getElementById('meetingType').value,
+                meetingYear: document.getElementById('meetingYear').value,
+                meetingDate: document.getElementById('meetingDate').value,
+                meetingTime: document.getElementById('meetingTime').value,
+                meetingVenue: document.getElementById('meetingVenue').value,
+                meetingChairperson: document.getElementById('meetingChairperson').value,
+                meetingSecretary: document.getElementById('meetingSecretary').value,
+                attendanceCount: parseInt(document.getElementById('attendanceCount').value),
+                mainAgenda: document.getElementById('mainAgenda').value,
+                discussions: document.getElementById('discussions').value,
+                actionItems: document.getElementById('actionItems').value,
+                nextMeetingDate: document.getElementById('nextMeetingDate').value,
+                additionalNotes: document.getElementById('additionalNotes').value
+            };
+            
+            // Add to meeting data
+            meetingData.push(formData);
+            localStorage.setItem('meetingData', JSON.stringify(meetingData));
+            
+            // Show success message
+            alert('Minit mesyuarat berjaya disimpan!');
+            
+            // Clear form
+            clearMeetingForm();
+            
+            // Close modal
+            closeMeetingForm();
         });
 
         // Attendance form functions
@@ -3020,6 +3408,157 @@
             container.innerHTML = html;
         }
 
+        // Display meeting records
+        function displayMeetingRecords() {
+            const container = document.getElementById('meetingList');
+            
+            if (meetingData.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <p class="text-lg font-medium">Tiada minit mesyuarat berdaftar lagi</p>
+                        <p class="text-sm">Sila daftar minit mesyuarat terlebih dahulu untuk melihat rekod di sini</p>
+                    </div>
+                `;
+                
+                // Update stats
+                document.getElementById('totalMeetings').textContent = '0';
+                document.getElementById('activeMeetingUnits').textContent = '0';
+                document.getElementById('thisYearMeetings').textContent = '0';
+                document.getElementById('latestMeeting').textContent = '-';
+                return;
+            }
+            
+            // Update stats
+            document.getElementById('totalMeetings').textContent = meetingData.length;
+            
+            // Count active units
+            const uniqueUnits = [...new Set(meetingData.map(meeting => meeting.unit))];
+            document.getElementById('activeMeetingUnits').textContent = uniqueUnits.length;
+            
+            // Count this year meetings
+            const currentYear = new Date().getFullYear();
+            const thisYearCount = meetingData.filter(meeting => {
+                const meetingDate = new Date(meeting.meetingDate);
+                return meetingDate.getFullYear() === currentYear;
+            }).length;
+            document.getElementById('thisYearMeetings').textContent = thisYearCount;
+            
+            // Latest meeting
+            const latestMeeting = meetingData[meetingData.length - 1];
+            document.getElementById('latestMeeting').textContent = latestMeeting ? 
+                new Date(latestMeeting.meetingDate).toLocaleDateString('ms-MY') : '-';
+            
+            // Display meetings
+            let html = '<div class="space-y-4">';
+            meetingData.sort((a, b) => new Date(b.meetingDate) - new Date(a.meetingDate)).forEach(meeting => {
+                const meetingDate = new Date(meeting.meetingDate);
+                const meetingTypeBadgeColor = getMeetingTypeBadgeColor(meeting.meetingType);
+                
+                html += `
+                    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <h4 class="font-medium text-gray-800 text-xl">${getMeetingTypeDisplayName(meeting.meetingType)}</h4>
+                                    <span class="px-2 py-1 ${meetingTypeBadgeColor} text-xs rounded-full font-medium">
+                                        ${meeting.meetingYear}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">${meeting.unit} • ${meetingDate.toLocaleDateString('ms-MY')} • ${meeting.meetingTime}</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Tempat:</span>
+                                        <span class="text-gray-600">${meeting.meetingVenue}</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Kehadiran:</span>
+                                        <span class="text-gray-600">${meeting.attendanceCount} ahli</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Pengerusi:</span>
+                                        <span class="text-gray-600">${meeting.meetingChairperson}</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Setiausaha:</span>
+                                        <span class="text-gray-600">${meeting.meetingSecretary}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div>
+                                        <span class="font-medium text-gray-700 block mb-1">Agenda Utama:</span>
+                                        <p class="text-gray-600 text-sm bg-white p-3 rounded border">${meeting.mainAgenda}</p>
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700 block mb-1">Perbincangan dan Keputusan:</span>
+                                        <p class="text-gray-600 text-sm bg-white p-3 rounded border">${meeting.discussions}</p>
+                                    </div>
+                                    ${meeting.actionItems ? `
+                                        <div>
+                                            <span class="font-medium text-gray-700 block mb-1">Tindakan Susulan:</span>
+                                            <p class="text-gray-600 text-sm bg-white p-3 rounded border">${meeting.actionItems}</p>
+                                        </div>
+                                    ` : ''}
+                                    ${meeting.nextMeetingDate ? `
+                                        <div>
+                                            <span class="font-medium text-gray-700">Mesyuarat Seterusnya:</span>
+                                            <span class="text-gray-600">${new Date(meeting.nextMeetingDate).toLocaleDateString('ms-MY')}</span>
+                                        </div>
+                                    ` : ''}
+                                    ${meeting.additionalNotes ? `
+                                        <div>
+                                            <span class="font-medium text-gray-700 block mb-1">Catatan Tambahan:</span>
+                                            <p class="text-gray-600 text-sm bg-white p-3 rounded border">${meeting.additionalNotes}</p>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            container.innerHTML = html;
+        }
+
+        function getMeetingTypeBadgeColor(type) {
+            const colors = {
+                'mesyuarat-agung-tahunan': 'bg-blue-100 text-blue-800',
+                'mesyuarat-agung-khas': 'bg-purple-100 text-purple-800',
+                'mesyuarat-jawatankuasa': 'bg-green-100 text-green-800',
+                'mesyuarat-kecemasan': 'bg-red-100 text-red-800'
+            };
+            return colors[type] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getMeetingTypeDisplayName(type) {
+            const names = {
+                'mesyuarat-agung-tahunan': 'Mesyuarat Agung Tahunan',
+                'mesyuarat-agung-khas': 'Mesyuarat Agung Khas',
+                'mesyuarat-jawatankuasa': 'Mesyuarat Jawatankuasa',
+                'mesyuarat-kecemasan': 'Mesyuarat Kecemasan'
+            };
+            return names[type] || type;
+        }
+
+        // Meeting filter functions (placeholder - can be implemented similar to other filters)
+        function updateMeetingUnitFilter() {
+            // Implementation similar to other filters
+        }
+
+        function filterMeetingRecords() {
+            // Implementation similar to other filters
+        }
+
+        function clearAllMeetingFilters() {
+            // Implementation similar to other filters
+        }
+
         // Financial filter functions (placeholder - can be implemented similar to other filters)
         function updateFinancialUnitFilter() {
             // Implementation similar to other filters
@@ -3035,7 +3574,7 @@
 
         // Close modals when clicking outside
         window.addEventListener('click', function(e) {
-            const modals = ['membershipModal', 'attendanceModal', 'membershipRecordsModal', 'attendanceRecordsModal', 'committeeModal', 'committeeRecordsModal', 'scheduleModal', 'scheduleRecordsModal', 'financialModal', 'financialRecordsModal'];
+            const modals = ['membershipModal', 'attendanceModal', 'membershipRecordsModal', 'attendanceRecordsModal', 'committeeModal', 'committeeRecordsModal', 'scheduleModal', 'scheduleRecordsModal', 'financialModal', 'financialRecordsModal', 'meetingModal', 'meetingRecordsModal'];
             modals.forEach(modalId => {
                 const modal = document.getElementById(modalId);
                 if (e.target === modal) {
@@ -3044,5 +3583,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3dd4534fb1fe1',t:'MTc1NzA1NTc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97a3f71023071fe1',t:'MTc1NzA1NjgzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
